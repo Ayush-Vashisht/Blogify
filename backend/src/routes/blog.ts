@@ -61,36 +61,62 @@ blogRouter.post("/", async (c) => {
   });
 });
 
-blogRouter.put("/", async(c) => {
+blogRouter.put("/", async (c) => {
   const body = await c.req.json();
   const { success } = updatePostInput.safeParse(body);
   if (!success) {
-      c.status(411);
-      return c.json({
-          message: "Inputs not correct"
-      })
+    c.status(411);
+    return c.json({
+      message: "Inputs not correct",
+    });
   }
 
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
-  }).$extends(withAccelerate())
+  }).$extends(withAccelerate());
 
   const blog = await prisma.blog.update({
-      where: {
-          id: body.id
-      }, 
-      data: {
-          title: body.title,
-          content: body.content
-      }
-  })
+    where: {
+      id: body.id,
+    },
+    data: {
+      title: body.title,
+      content: body.content,
+    },
+  });
 
   return c.json({
-      id: blog.id
-  })
+    id: blog.id,
+  });
 });
 
-blogRouter.get("/:id", (c) => {
+blogRouter.get("/:id", async (c) => {
+  const id = c.req.param("id");
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+  try {
+    const blog = await prisma.blog.findFirst({
+      where: {
+        id: id,
+      },
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
+  } catch (error) {
+    c.status(411);
+    return c.json({
+      message: "Error while fetching the blog",
+    });
+  }
   return c.json("blog route");
 });
 
