@@ -13,18 +13,18 @@ datasource db {
 }
 
 model User {
-  id  String    @id @default(uuid())
-  name    String?
-  email String @unique
+  id       String   @id @default(uuid())
+  email    String   @unique
+  name     String?
   password String
-  blogs    Blog[]
+  posts    Post[]
 }
 
-model Blog {
-  id  String    @id @default(uuid())
-  authorId   String
-  content    String
-  title       String
+model Post {
+  id        String   @id @default(uuid())
+  title     String
+  content   String
   published Boolean  @default(false)
-  author    User @relation(fields: [authorId], references: [id])
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
 }
