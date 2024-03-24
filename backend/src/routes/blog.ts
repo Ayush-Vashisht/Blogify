@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { verify } from "hono/jwt";
-import { createPostInput } from "@ayush-vashisht/common";
+import { createPostInput, updatePostInput } from "@ayush-vashisht/common";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 
@@ -61,12 +61,39 @@ blogRouter.post("/", async (c) => {
   });
 });
 
+blogRouter.put("/", async(c) => {
+  const body = await c.req.json();
+  const { success } = updatePostInput.safeParse(body);
+  if (!success) {
+      c.status(411);
+      return c.json({
+          message: "Inputs not correct"
+      })
+  }
+
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate())
+
+  const blog = await prisma.blog.update({
+      where: {
+          id: body.id
+      }, 
+      data: {
+          title: body.title,
+          content: body.content
+      }
+  })
+
+  return c.json({
+      id: blog.id
+  })
+});
+
 blogRouter.get("/:id", (c) => {
   return c.json("blog route");
 });
-blogRouter.put("/", (c) => {
-  return c.json("blogs route");
-});
+
 blogRouter.get("/bulk", (c) => {
   return c.json("blog route");
 });
