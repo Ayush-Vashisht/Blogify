@@ -1,61 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, Heading, Img, Button } from "../../components";
 import Footer from "../../components/Footer";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function BlogDetailsPage() {
+  const [open, setOpen] = useState(false);
+  const [blog, setBlog] = useState({});
+  const id = useParams();
+  useEffect(() => {
+    const data = async () => {
+      await axios.get(`/api/v1/blog/+${id}`);
+    };
+    setBlog(data);
+  }, [id]);
   return (
     <>
       <div className="flex flex-col items-center justify-start w-full bg-white-A700">
-        <header className="flex justify-center items-center w-full p-6 bg-white-A700">
-          <div className="flex flex-row justify-between items-center w-full mx-auto max-w-[1114px]">
-            <div className="flex flex-row justify-between items-center w-[69%]">
+        <header className="flex flex-row justify-between items-center w-full p-6 bg-white-A700">
+          <div className="flex flex-row justify-between items-center w-[55%] ml-[13px]">
+            <Link to="/">
               <Img
                 src="images/img_group_150.svg"
                 alt="image"
                 className="h-[24px]"
               />
-              <div className="flex flex-row justify-between items-center w-[53%]">
-                <div className="flex flex-col items-center justify-start w-[13%] gap-0.5">
-                  <Heading
-                    as="h6"
-                    className="!text-indigo-900_01 tracking-[0.12px] text-center"
-                  >
-                    Home
-                  </Heading>
-                  <div className="h-px w-full bg-indigo-900_01" />
-                </div>
-                <Heading
-                  as="h6"
-                  className="!text-indigo-200_01 tracking-[0.12px] text-center"
-                >
-                  Podcast
-                </Heading>
-                <Heading
-                  as="h6"
-                  className="!text-indigo-200_01 tracking-[0.12px] text-center"
-                >
-                  Blog
-                </Heading>
-                <Heading
-                  as="h6"
-                  className="!text-indigo-200_01 tracking-[0.12px] text-center"
-                >
-                  About
-                </Heading>
-                <Heading
-                  as="h6"
-                  className="!text-indigo-200_01 tracking-[0.12px] text-center"
-                >
-                  Contact
-                </Heading>
-              </div>
+            </Link>
+          </div>
+          {open ? (
+            <div className="flex items-center justify-center border border-solid rounded-[5px] text-gray-500">
+              <input className=" px-1 py-1 text-sm  " placeholder="Search" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+                onClick={() => setOpen(false)}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
             </div>
+          ) : (
             <Img
               src="images/img_search.svg"
               alt="search_one"
-              className="h-[30px] w-[30px]"
+              onClick={() => setOpen(!open)}
+              className="h-[30px] w-[30px] mr-[13px]"
             />
-          </div>
+          )}
         </header>
         <div className="flex flex-col items-center justify-start w-full mt-10 gap-[150px] max-w-[1356px]">
           <div className="flex flex-col items-center justify-start w-[99%]">
@@ -64,6 +62,7 @@ export default function BlogDetailsPage() {
                 <div className="flex flex-col items-center justify-start w-full">
                   <Img
                     src="images/img_rectangle_20.png"
+                    // src="{blog.bgImg}"
                     alt="image_one"
                     className="w-full object-cover rounded-[25px]"
                   />
@@ -75,6 +74,7 @@ export default function BlogDetailsPage() {
                     >
                       How to write a book properly and correctly by paying
                       attention to various parts to support the story
+                      {/* {blog.title} */}
                     </Heading>
                     <div className="flex flex-row justify-between items-center w-[97%] mt-12 ml-4">
                       <div className="flex flex-row justify-start items-center w-[31%] gap-3.5">
@@ -90,9 +90,11 @@ export default function BlogDetailsPage() {
                             className="!text-blue_gray-600 !font-semibold"
                           >
                             By Jhone Leonardo
+                            {/* {blog.author} */}
                           </Heading>
                           <Text size="xs" as="p" className="text-center">
                             12 September, 2020
+                            {/* {blog.datePosted} */}
                           </Text>
                         </div>
                       </div>
@@ -124,8 +126,9 @@ export default function BlogDetailsPage() {
                   Could someone survive inside a transporter buffer for 75
                   years? Fate. It protects fools, little children, and ships
                   named “Enterprise.”
+                  {/* {blog.content} */}
                 </Text>
-                <div className="flex flex-row justify-start items-start w-[97%] mt-[50px] gap-5">
+                {/* <div className="flex flex-row justify-start items-start w-[97%] mt-[50px] gap-5">
                   <Img
                     src="images/img_right_quotation_sign.svg"
                     alt="rightquotation"
@@ -142,8 +145,8 @@ export default function BlogDetailsPage() {
                     </Heading>
                     <Text as="p">JEAN-LUC PICARD</Text>
                   </div>
-                </div>
-                <Text as="p" className="mt-[49px] leading-[35px]">
+                </div> */}
+                {/* <Text as="p" className="mt-[49px] leading-[35px]">
                   <span className="text-blue_gray-600">
                     The game’s not big enough unless it scares you a little.
                     Wait a minute – you’ve been declared dead. You can’t give{" "}
@@ -156,7 +159,7 @@ export default function BlogDetailsPage() {
                     Flair is what marks the difference between artistry and mere
                     competence.
                   </span>
-                </Text>
+                </Text> */}
                 <Text as="p" className="mt-2.5 leading-[35px]">
                   Did you come here for something in particular or just general
                   Riker-bashing? And blowing into maximum warp speed, you
@@ -168,13 +171,13 @@ export default function BlogDetailsPage() {
                   years? Fate. It protects fools, little children, and ships
                   named “Enterprise.”
                 </Text>
-                <Heading
+                {/* <Heading
                   size="lg"
                   as="h4"
                   className="mt-[45px] !text-blue_gray-600 !font-merriweather"
                 >
                   Lorem Ipsum Dolor Sit Amet
-                </Heading>
+                </Heading> */}
                 <Text as="p" className="mt-5 leading-[35px]">
                   Did you come here for something in particular or just general
                   Riker-bashing? And blowing into maximum warp speed, you
@@ -185,7 +188,7 @@ export default function BlogDetailsPage() {
                   years? Fate. It protects fools, little children, and ships
                   named “Enterprise.”
                 </Text>
-                <div className="flex flex-row mt-[50px] gap-[29px]">
+                {/* <div className="flex flex-row mt-[50px] gap-[29px]">
                   <Img
                     src="images/img_rectangle_23.png"
                     alt="rectangle"
@@ -196,7 +199,7 @@ export default function BlogDetailsPage() {
                     alt="rectangle"
                     className="w-[49%] object-cover rounded-[15px]"
                   />
-                </div>
+                </div> */}
                 <Text as="p" className="mt-[50px] leading-[35px]">
                   What’s a knock-out like you doing in a computer-generated gin
                   joint like this? But the probability of making a six is no
@@ -212,7 +215,7 @@ export default function BlogDetailsPage() {
                   course with the Borg ship. Yesterday I did not know how to eat
                   gagh. You’re going to be an interesting companion.
                 </Text>
-                <div className="flex flex-col items-start justify-start w-[43%] mt-[27px] ml-[30px] gap-3.5">
+                {/* <div className="flex flex-col items-start justify-start w-[43%] mt-[27px] ml-[30px] gap-3.5">
                   <div className="flex flex-row justify-start items-start w-[61%] gap-[15px]">
                     <div className="h-[10px] w-[10px] mt-[5px] bg-blue_gray-600 rounded-[50%]" />
                     <Text as="p">Lorem ipsum dolor sit amet.</Text>
@@ -227,7 +230,7 @@ export default function BlogDetailsPage() {
                       Excepteur sint occaecat cupidatat non proident.
                     </Text>
                   </div>
-                </div>
+                </div> */}
                 <Text as="p" className="mt-[26px] leading-[35px]">
                   Could someone survive inside a transporter buffer for 75
                   years? Fate. It protects fools, little children, and ships
@@ -236,7 +239,18 @@ export default function BlogDetailsPage() {
                 <Text size="lg" as="p" className="mt-[51px] !font-medium">
                   Tags
                 </Text>
+
                 <div className="flex flex-row justify-start mt-3 gap-[15px]">
+                  {/* {blog.tags.map(tag=>{
+                  <Button
+                  color="gray_200"
+                  size="md"
+                  shape="round"
+                  className="font-thin min-w-[96px]"
+                >
+                  {tag}
+                </Button>
+                })} */}
                   <Button
                     color="gray_200"
                     size="md"
@@ -278,7 +292,7 @@ export default function BlogDetailsPage() {
                     2020
                   </Button>
                 </div>
-                <div className="flex flex-row justify-start w-[64%] mt-[57px] ml-[153px]">
+                {/* <div className="flex flex-row justify-start w-[64%] mt-[57px] ml-[153px]">
                   <div className="flex flex-col items-end justify-start w-full gap-[30px]">
                     <div className="h-[163px] w-full relative">
                       <Img
@@ -316,7 +330,7 @@ export default function BlogDetailsPage() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

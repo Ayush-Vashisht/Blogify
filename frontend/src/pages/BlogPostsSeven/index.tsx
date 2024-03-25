@@ -58,13 +58,13 @@ export default function BlogPostsSevenPage() {
                     <div className="flex flex-col items-start justify-start w-full">
                       <div className="flex flex-row justify-start">
                         <Img
-                          src="blog.img"
+                          src="{blog.img}"
                           alt="bitmap_one"
                           className="w-full rounded-tr rounded-tl object-cover"
                         />
                       </div>
                       <Img
-                        src="blog.perImg"
+                        src="{blog.perImg}"
                         alt="ovalcopyfour"
                         className="h-[42px] w-[42px] mt-[-22px] ml-[26px] rounded-[50%]"
                       />
