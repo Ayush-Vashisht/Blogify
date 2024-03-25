@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Button, TextArea, Input, Text, Img, Heading } from "../../components";
-import Footer from "../../components/Footer";
+import { Text, Img, Heading, Button, Input } from "../../components";
+import BlogPostsSevenPage from "pages/BlogPostsSeven";
 import { Link } from "react-router-dom";
 
-export default function ContactUsPage() {
+const Blog = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <div className="flex flex-col items-center justify-start w-full gap-[105px] bg-white-A700">
+      <div className="flex flex-col items-center justify-start w-full gap-[90px] bg-white-A700">
         <header className="flex flex-row justify-between items-center w-full p-6 bg-white-A700">
           <div className="flex flex-row justify-between items-center w-[55%] ml-[139px]">
             <Link to="/">
@@ -39,10 +39,11 @@ export default function ContactUsPage() {
               <Link to="/blog">
                 <Heading
                   as="h6"
-                  className="!text-indigo-200_01 tracking-[0.12px] text-center"
+                  className="!text-indigo-900_01 tracking-[0.12px] text-center"
                 >
                   Blog
                 </Heading>
+                <div className="h-px w-full bg-indigo-900_01" />
               </Link>
               {/* <Link to="/about">
                     <Heading
@@ -55,11 +56,10 @@ export default function ContactUsPage() {
               <Link to="/contactus">
                 <Heading
                   as="h6"
-                  className="!text-indigo-900_01 tracking-[0.12px] text-center"
+                  className="!text-indigo-200_01 tracking-[0.12px] text-center"
                 >
                   Contact
                 </Heading>
-                <div className="h-px w-full bg-indigo-900_01" />
               </Link>
             </div>
           </div>
@@ -91,90 +91,59 @@ export default function ContactUsPage() {
             />
           )}
         </header>
-        <div className="flex flex-row justify-center w-full max-w-[1103px]">
-          <div className="flex flex-row justify-center w-full">
-            <div className="flex flex-col items-center justify-start w-full">
-              <Heading size="xl" as="h1" className="!text-blue_gray-600">
-                Contact us
-              </Heading>
-              <Text as="p" className="mt-[5px]">
-                Complete the form to contact us
-              </Text>
-              <div className="flex flex-row justify-start items-start w-full mt-[39px] gap-[29px]">
-                <div className="flex flex-col items-start justify-start w-[29%] gap-[19px]">
-                  <Heading size="xl" as="h2" className="!text-blue_gray-600">
-                    Info
-                  </Heading>
-                  <div className="flex flex-col items-start justify-start w-full gap-[18px]">
-                    <div className="flex flex-row justify-start items-center gap-2.5">
-                      <Img
-                        src="images/img_vector_blue_gray_600.svg"
-                        alt="vector_one"
-                        className="h-[20px] w-[20px]"
-                      />
-                      <Text as="p">01234567890</Text>
-                    </div>
-                    <div className="flex flex-row justify-start items-center ml-[3px] gap-2.5">
-                      <Img
-                        src="images/img_mail_1.svg"
-                        alt="mailone_one"
-                        className="h-[20px] w-[20px]"
-                      />
-                      <Text as="p">hello@gmail.com</Text>
-                    </div>
-                    <div className="flex flex-row justify-start items-start ml-[3px] gap-[9px]">
-                      <Img
-                        src="images/img_pin_1.svg"
-                        alt="pinone_one"
-                        className="h-[20px] mt-[5px]"
-                      />
-                      <Text as="p" className="w-[92%] leading-[30px]">
-                        Massachusetts Ave NW, Washington, DC 20036
-                      </Text>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-row justify-center w-[69%] mt-2 p-[26px] bg-white-A700 shadow-xl rounded-[10px]">
-                  <div className="flex flex-col items-start justify-start w-full gap-[30px] my-[17px]">
-                    <div className="flex flex-row justify-start gap-[25px]">
-                      <Input
-                        type="text"
-                        name="name"
-                        placeholder="Your Name"
-                        className="w-[49%] font-light"
-                      />
-                      <Input
-                        type="email"
-                        name="email"
-                        placeholder="Your Email"
-                        className="w-[49%] font-light"
-                      />
-                    </div>
-                    <Input
-                      name="your_subject"
-                      placeholder="Your Subject"
-                      className="w-full font-light"
-                    />
-                    <TextArea
-                      name="description"
-                      placeholder="Description"
-                      className="w-full text-gray-400 font-light"
-                    />
-                    <Button
-                      color="indigo_900_01"
-                      size="5xl"
-                      shape="round"
-                      className="!text-white-A700 min-w-[190px]"
-                    >
-                      Send Message
-                    </Button>
-                  </div>
-                </div>
-              </div>
+        <div className="flex flex-col items-center justify-start w-full gap-[99px] max-w-[1111px]">
+          <div className="flex flex-col items-center justify-start w-full gap-[100px]">
+            <div className="flex flex-row justify-start items-start w-full gap-[29px]">
+              <BlogPostsSevenPage />
             </div>
           </div>
         </div>
         <footer className="flex flex-col items-center justify-center w-full">
+          <div className="flex flex-row justify-evenly items-center w-[78%] mb-[30px] mt-[60px] gap-[53px] py-[5px] bg-green-50 rounded-[5px]">
+            <div className="flex flex-col items-start justify-start w-[46%]">
+              <Text as="p" className="!text-indigo-900_01">
+                NEWSLETTER
+              </Text>
+              <Heading
+                size="xl"
+                as="h1"
+                className="mt-1 !font-merriweather !font-black"
+              >
+                Subscribe to our website newsletter to receive news and updates.
+              </Heading>
+              <Text as="p" className="mt-5 !text-blue_gray-900">
+                Get special offers directly to your email every week!
+              </Text>
+            </div>
+            <div className="flex flex-col items-end justify-start w-[40%] mt-8 gap-[7px]">
+              <div className="flex flex-col items-start justify-start w-full gap-5">
+                <Input
+                  color="white_A700"
+                  size="sm"
+                  variant="fill"
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  className="w-full font-bold border-indigo-900_01"
+                />
+                <Button
+                  color="indigo_900_01"
+                  size="2xl"
+                  shape="round"
+                  className="!text-white-A700 font-semibold min-w-[137px]"
+                >
+                  Subscribe
+                </Button>
+              </div>
+              <Button
+                color="pink_300"
+                size="7xl"
+                className="w-[77px] mr-[77px] rounded-[38px]"
+              >
+                <Img src="images/img_newspaper_1.svg" />
+              </Button>
+            </div>
+          </div>
           <div className="flex flex-row justify-end w-full ">
             <div className="flex flex-row justify-center w-full p-[33px] bg-gray-600_01">
               <div className="flex flex-col items-center justify-start w-[81%] mt-[30px] gap-[66px] mx-[132px]">
@@ -222,10 +191,10 @@ export default function ContactUsPage() {
                       </Text>
                     </Link>
                     {/* <Link to="/">
-                      <Text as="p" className="!text-white-A700">
-                        About
-                      </Text>
-                    </Link> */}
+                          <Text as="p" className="!text-white-A700">
+                            About
+                          </Text>
+                        </Link> */}
                     <Link to="/contactus">
                       <Text as="p" className="!text-white-A700">
                         Contact
@@ -265,4 +234,6 @@ export default function ContactUsPage() {
       </div>
     </>
   );
-}
+};
+
+export default Blog;

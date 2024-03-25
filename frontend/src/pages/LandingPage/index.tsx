@@ -1,59 +1,95 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, Img, Heading, Button, Input } from "../../components";
 import BlogPostsSevenPage from "pages/BlogPostsSeven";
+import { Link } from "react-router-dom";
 
 export default function LandingPagePage() {
+  const [open, setOpen] = useState(false);
   return (
     <>
       <div className="flex flex-col items-center justify-start w-full gap-[95px] bg-white-A700">
         <header className="flex flex-row justify-between items-center w-full p-6 bg-white-A700">
           <div className="flex flex-row justify-between items-center w-[55%] ml-[139px]">
-            <Img
-              src="images/img_group_150.svg"
-              alt="image"
-              className="h-[24px]"
-            />
+            <Link to="/">
+              <Img
+                src="images/img_group_150.svg"
+                alt="image"
+                className="h-[24px]"
+              />
+            </Link>
             <div className="flex flex-row justify-between items-center w-[53%]">
               <div className="flex flex-col items-center justify-start w-[13%] gap-0.5">
-                <Heading
-                  as="h6"
-                  className="!text-indigo-900_01 tracking-[0.12px] text-center"
-                >
-                  Home
-                </Heading>
+                <Link to="/">
+                  <Heading
+                    as="h6"
+                    className="!text-indigo-900_01 tracking-[0.12px] text-center"
+                  >
+                    Home
+                  </Heading>
+                </Link>
                 <div className="h-px w-full bg-indigo-900_01" />
               </div>
-              <Heading
-                as="h6"
-                className="!text-indigo-200_01 tracking-[0.12px] text-center"
-              >
-                Podcast
-              </Heading>
-              <Heading
-                as="h6"
-                className="!text-indigo-200_01 tracking-[0.12px] text-center"
-              >
-                Blog
-              </Heading>
-              <Heading
-                as="h6"
-                className="!text-indigo-200_01 tracking-[0.12px] text-center"
-              >
-                About
-              </Heading>
-              <Heading
-                as="h6"
-                className="!text-indigo-200_01 tracking-[0.12px] text-center"
-              >
-                Contact
-              </Heading>
+              <Link to="/podcast">
+                <Heading
+                  as="h6"
+                  className="!text-indigo-200_01 tracking-[0.12px] text-center"
+                >
+                  Podcast
+                </Heading>
+              </Link>
+              <Link to="/blog">
+                <Heading
+                  as="h6"
+                  className="!text-indigo-200_01 tracking-[0.12px] text-center"
+                >
+                  Blog
+                </Heading>
+              </Link>
+              {/* <Link to="/about">
+                <Heading
+                  as="h6"
+                  className="!text-indigo-200_01 tracking-[0.12px] text-center"
+                >
+                  About
+                </Heading>
+              </Link> */}
+              <Link to="/contactus">
+                <Heading
+                  as="h6"
+                  className="!text-indigo-200_01 tracking-[0.12px] text-center"
+                >
+                  Contact
+                </Heading>
+              </Link>
             </div>
           </div>
-          <Img
-            src="images/img_search.svg"
-            alt="search_one"
-            className="h-[30px] w-[30px] mr-[139px]"
-          />
+          {open ? (
+            <div className="flex items-center justify-center border border-solid rounded-[5px] text-gray-500">
+              <input className=" px-1 py-1 text-sm  " placeholder="Search" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+                onClick={() => setOpen(false)}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+            </div>
+          ) : (
+            <Img
+              src="images/img_search.svg"
+              alt="search_one"
+              onClick={() => setOpen(!open)}
+              className="h-[30px] w-[30px] mr-[139px]"
+            />
+          )}
         </header>
         <div className="flex flex-col items-center justify-start w-full gap-[99px] max-w-[1111px]">
           <div className="flex flex-row justify-center w-[93%]">
@@ -91,7 +127,7 @@ export default function LandingPagePage() {
                 <Button
                   color="indigo_900_01"
                   size="4xl"
-                  className="!text-white-A700 tracking-[0.12px] shadow-sm min-w-[221px] rounded-[35px]"
+                  className="!text-white-A700 tracking-[0.12px] shadow-sm min-w-[221px] rounded-[35px] hover:bg-white-A700 hover:!text-gray-700 hover:ring-4"
                 >
                   Read Blogs
                 </Button>
@@ -99,7 +135,7 @@ export default function LandingPagePage() {
                   color="indigo_200"
                   size="4xl"
                   variant="outline"
-                  className="tracking-[0.12px] min-w-[271px] rounded-[35px]"
+                  className="tracking-[0.12px] min-w-[271px] rounded-[35px] hover:bg-indigo-900 hover:text-white-A700 hover:ring-2 "
                 >
                   Listen to Podcasts
                 </Button>
@@ -107,7 +143,7 @@ export default function LandingPagePage() {
             </div>
           </div>
           <div className="flex flex-col items-center justify-start w-full gap-[100px]">
-          <div className="flex flex-row justify-start items-start w-full gap-[29px]">
+            <div className="flex flex-row justify-start items-start w-full gap-[29px]">
               <BlogPostsSevenPage />
             </div>
             <div className="flex flex-col items-center justify-start w-full gap-[17px]">
@@ -133,7 +169,7 @@ export default function LandingPagePage() {
                     </Text>
                   </div>
                 </div>
-                <a href="#">
+                <Link to="/podcast">
                   <Heading
                     size="xs"
                     as="h3"
@@ -141,10 +177,10 @@ export default function LandingPagePage() {
                   >
                     See all podcasts
                   </Heading>
-                </a>
+                </Link>
               </div>
               <div className="flex flex-row w-full gap-[22px]">
-                <div className="flex flex-col items-center justify-center w-[24%] gap-[15px] p-[13px] bg-white-A700 shadow-md rounded-[5px]">
+                <div className="flex flex-col items-center justify-center w-[24%] gap-[15px] p-[13px] bg-white-A700 shadow-md rounded-[5px] cursor-pointer">
                   <div className="h-[207px] w-full mt-[7px] relative">
                     <Img
                       src="images/img_rectangle_9.png"
@@ -167,7 +203,7 @@ export default function LandingPagePage() {
                     </Text>
                   </div>
                 </div>
-                <div className="flex flex-col items-center justify-center w-[24%] gap-[15px] p-[13px] bg-white-A700 shadow-md rounded-[5px]">
+                <div className="flex flex-col items-center justify-center w-[24%] gap-[15px] p-[13px] bg-white-A700 shadow-md rounded-[5px] cursor-pointer">
                   <div className="h-[207px] w-full mt-[7px] relative">
                     <Img
                       src="images/img_rectangle_9_207x233.png"
@@ -190,7 +226,7 @@ export default function LandingPagePage() {
                     </Text>
                   </div>
                 </div>
-                <div className="flex flex-col items-center justify-center w-[24%] gap-[15px] p-[13px] bg-white-A700 shadow-md rounded-[5px]">
+                <div className="flex flex-col items-center justify-center w-[24%] gap-[15px] p-[13px] bg-white-A700 shadow-md rounded-[5px] cursor-pointer">
                   <div className="h-[207px] w-full mt-[7px] relative">
                     <Img
                       src="images/img_rectangle_9_1.png"
@@ -213,7 +249,7 @@ export default function LandingPagePage() {
                     </Text>
                   </div>
                 </div>
-                <div className="flex flex-col items-center justify-center w-[24%] gap-[15px] p-[13px] bg-white-A700 shadow-md rounded-[5px]">
+                <div className="flex flex-col items-center justify-center w-[24%] gap-[15px] p-[13px] bg-white-A700 shadow-md rounded-[5px] cursor-pointer">
                   <div className="h-[207px] w-full mt-[7px] relative">
                     <Img
                       src="images/img_rectangle_9_2.png"
@@ -238,7 +274,6 @@ export default function LandingPagePage() {
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
         <footer className="flex flex-col items-center justify-center w-full">
@@ -318,21 +353,31 @@ export default function LandingPagePage() {
                     </div>
                   </div>
                   <div className="flex flex-row justify-between w-auto gap-[50px]">
-                    <Text as="p" className="!text-white-A700">
-                      Home
-                    </Text>
-                    <Text as="p" className="!text-white-A700">
-                      Podcast
-                    </Text>
-                    <Text as="p" className="!text-white-A700">
-                      Blog
-                    </Text>
-                    <Text as="p" className="!text-white-A700">
-                      About
-                    </Text>
-                    <Text as="p" className="!text-white-A700">
-                      Contact
-                    </Text>
+                    <Link to="/">
+                      <Text as="p" className="!text-white-A700">
+                        Home
+                      </Text>
+                    </Link>
+                    <Link to="/podcast">
+                      <Text as="p" className="!text-white-A700">
+                        Podcast
+                      </Text>
+                    </Link>
+                    <Link to="/blog">
+                      <Text as="p" className="!text-white-A700">
+                        Blog
+                      </Text>
+                    </Link>
+                    {/* <Link to="/">
+                      <Text as="p" className="!text-white-A700">
+                        About
+                      </Text>
+                    </Link> */}
+                    <Link to="/contactus">
+                      <Text as="p" className="!text-white-A700">
+                        Contact
+                      </Text>
+                    </Link>
                   </div>
                   <div className="flex flex-col items-center justify-start w-[11%] gap-[19px]">
                     <Heading as="h6" className="!text-white-A700 text-center">
