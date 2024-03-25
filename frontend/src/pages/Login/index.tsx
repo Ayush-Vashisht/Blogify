@@ -3,7 +3,7 @@ import { Button, TextArea, Input, Text, Img, Heading } from "../../components";
 import Footer from "../../components/Footer";
 import { Link } from "react-router-dom";
 
-export default function user() {
+export default function Register() {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -113,56 +113,15 @@ export default function user() {
           <div className="flex flex-row justify-center w-full">
             <div className="flex flex-col items-center justify-start w-full">
               <Heading size="xl" as="h1" className="!text-blue_gray-600">
-                Register
+                Sign In
               </Heading>
               <Text as="p" className="mt-[5px]">
-                Complete the form to Create Account
+                Complete the form to Login into your Account
               </Text>
-              <div className="flex flex-row justify-start items-start w-full mt-[39px] gap-[29px]">
-                <div className="flex flex-col items-start justify-start w-[29%] gap-[19px]">
-                  <Heading size="xl" as="h2" className="!text-blue_gray-600">
-                    Info
-                  </Heading>
-                  <div className="flex flex-col items-start justify-start w-full gap-[18px]">
-                    <div className="flex flex-row justify-start items-center gap-2.5">
-                      <Img
-                        src="images/img_vector_blue_gray_600.svg"
-                        alt="vector_one"
-                        className="h-[20px] w-[20px]"
-                      />
-                      <Text as="p">+91-XXXXXXXXXX</Text>
-                    </div>
-                    <div className="flex flex-row justify-start items-center ml-[3px] gap-2.5">
-                      <Img
-                        src="images/img_mail_1.svg"
-                        alt="mailone_one"
-                        className="h-[20px] w-[20px]"
-                      />
-                      <Text as="p">XXXXX@gmail.com</Text>
-                    </div>
-                    <div className="flex flex-row justify-start items-start ml-[3px] gap-[9px]">
-                      <Img
-                        src="images/img_pin_1.svg"
-                        alt="pinone_one"
-                        className="h-[20px] mt-[5px]"
-                      />
-                      <Text as="p" className="w-[92%] leading-[30px]">
-                        XXXXXXXXXXXXXXXXXX, YYYY, ZZ 800XX
-                      </Text>
-                    </div>
-                  </div>
-                </div>
+              <div className="flex flex-row justify-center items-start w-full mt-[39px] gap-[29px]">
                 <div className="flex flex-row justify-center w-[60%] mt-2 p-[26px] bg-white-A700 shadow-xl rounded-[10px]">
                   <div className="flex flex-col items-center justify-start w-full gap-[30px] my-[17px]">
                     <div className="flex flex-col justify-start gap-[25px] ">
-                      <div className=" border border-2  rounded-md px-4 py-2">
-                        <input
-                          type="text"
-                          name="name"
-                          placeholder="Your Name"
-                          className=" text-gray-500"
-                        />
-                      </div>
                       <div className="w-full font-light border border-2  rounded-md px-4 py-2">
                         <input
                           type="email"
@@ -187,10 +146,19 @@ export default function user() {
                       shape="round"
                       className="!text-white-A700 min-w-[190px]"
                     >
-                      Submit
+                      Sign In
                     </Button>
                   </div>
                 </div>
+              </div>
+              <div className="flex items-center justify-center mt-[39px] w-full !text-blue_gray-600 gap-1">
+                Create an account!
+                <Link
+                  to="/register"
+                  className="text-gray-600_01 hover:underline underline-offset-4"
+                >
+                  Sign up
+                </Link>
               </div>
             </div>
           </div>

@@ -92,7 +92,7 @@ export default function LandingPagePage() {
               />
             )}
             
-            <Link to="/user">
+            <Link to="/register">
               
               <svg
                 xmlns="http://www.w3.org/2000/svg"

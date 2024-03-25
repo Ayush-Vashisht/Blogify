@@ -7,7 +7,8 @@ import ContactUs from "pages/ContactUs";
 import BloggerDetails from "pages/BloggerDetails";
 import BlogPostsSevenPage from "pages/BlogPostsSeven";
 import Blog from "pages/Blog";
-import User from "pages/User";
+import Register from "pages/RegisterPage";
+import Login from "pages/Login";
 
 const ProjectRoutes = () => {
   let element = useRoutes([
@@ -33,8 +34,12 @@ const ProjectRoutes = () => {
       element: <Blog />,
     },
     {
-      path: "user",
-      element: <User />,
+      path: "Register",
+      element: <Register />,
+    },
+    {
+      path: "Login",
+      element: <Login />,
     },
   ]);
 
