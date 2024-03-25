@@ -63,33 +63,53 @@ export default function LandingPagePage() {
               </Link>
             </div>
           </div>
-          {open ? (
-            <div className="flex items-center justify-center border border-solid rounded-[5px] text-gray-500">
-              <input className=" px-1 py-1 text-sm  " placeholder="Search" />
+          <div className="flex items-center gap-[10px] mr-[50px]">
+            {open ? (
+              <div className="flex items-center justify-center border border-solid rounded-[5px] text-gray-500">
+                <input className=" px-1 py-1 text-sm  " placeholder="Search" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                  onClick={() => setOpen(false)}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18 18 6M6 6l12 12"
+                  />
+                </svg>
+              </div>
+            ) : (
+              <Img
+                src="images/img_search.svg"
+                alt="search_one"
+                onClick={() => setOpen(!open)}
+                className="h-[30px] w-[30px] "
+              />
+            )}
+            
+            <Link to="/user">
+              
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-                onClick={() => setOpen(false)}
+                stroke="darkblue"
+                className="h-[35px] w-[35px]"
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M6 18 18 6M6 6l12 12"
+                  d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                 />
               </svg>
-            </div>
-          ) : (
-            <Img
-              src="images/img_search.svg"
-              alt="search_one"
-              onClick={() => setOpen(!open)}
-              className="h-[30px] w-[30px] mr-[139px]"
-            />
-          )}
+            </Link>
+          </div>
         </header>
         <div className="flex flex-col items-center justify-start w-full gap-[99px] max-w-[1111px]">
           <div className="flex flex-row justify-center w-[93%]">

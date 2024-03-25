@@ -3,7 +3,7 @@ import { Button, TextArea, Input, Text, Img, Heading } from "../../components";
 import Footer from "../../components/Footer";
 import { Link } from "react-router-dom";
 
-export default function ContactUsPage() {
+export default function user() {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -22,7 +22,7 @@ export default function ContactUsPage() {
                 <Link to="/">
                   <Heading
                     as="h6"
-                    className="!text-indigo-200_01 tracking-[0.12px] text-center"
+                    className="!text-indigo-200_01 tracking-[0.12px] text-center hover:underline underline-offset-8"
                   >
                     Home
                   </Heading>
@@ -31,7 +31,7 @@ export default function ContactUsPage() {
               <Link to="/podcast">
                 <Heading
                   as="h6"
-                  className="!text-indigo-200_01 tracking-[0.12px] text-center"
+                  className="!text-indigo-200_01 tracking-[0.12px] text-center hover:underline underline-offset-8"
                 >
                   Podcast
                 </Heading>
@@ -39,7 +39,7 @@ export default function ContactUsPage() {
               <Link to="/blog">
                 <Heading
                   as="h6"
-                  className="!text-indigo-200_01 tracking-[0.12px] text-center"
+                  className="!text-indigo-200_01 tracking-[0.12px] text-center hover:underline underline-offset-8"
                 >
                   Blog
                 </Heading>
@@ -55,50 +55,68 @@ export default function ContactUsPage() {
               <Link to="/contactus">
                 <Heading
                   as="h6"
-                  className="!text-indigo-900_01 tracking-[0.12px] text-center"
+                  className="!text-indigo-200_01 tracking-[0.12px] text-center hover:underline underline-offset-8"
                 >
                   Contact
                 </Heading>
-                <div className="h-px w-full bg-indigo-900_01" />
               </Link>
             </div>
           </div>
-          {open ? (
-            <div className="flex items-center justify-center border border-solid rounded-[5px] text-gray-500">
-              <input className=" px-1 py-1 text-sm  " placeholder="Search" />
+          <div className="flex items-center gap-[10px] mr-[50px]">
+            {open ? (
+              <div className="flex items-center justify-center border border-solid rounded-[5px] text-gray-500">
+                <input className=" px-1 py-1 text-sm  " placeholder="Search" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                  onClick={() => setOpen(false)}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18 18 6M6 6l12 12"
+                  />
+                </svg>
+              </div>
+            ) : (
+              <Img
+                src="images/img_search.svg"
+                alt="search_one"
+                onClick={() => setOpen(!open)}
+                className="h-[30px] w-[30px] "
+              />
+            )}
+
+            <Link to="/user">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-                onClick={() => setOpen(false)}
+                stroke="darkblue"
+                className="h-[35px] w-[35px]"
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M6 18 18 6M6 6l12 12"
+                  d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                 />
               </svg>
-            </div>
-          ) : (
-            <Img
-              src="images/img_search.svg"
-              alt="search_one"
-              onClick={() => setOpen(!open)}
-              className="h-[30px] w-[30px] mr-[139px]"
-            />
-          )}
+            </Link>
+          </div>
         </header>
         <div className="flex flex-row justify-center w-full max-w-[1103px]">
           <div className="flex flex-row justify-center w-full">
             <div className="flex flex-col items-center justify-start w-full">
               <Heading size="xl" as="h1" className="!text-blue_gray-600">
-                Contact us
+                Register
               </Heading>
               <Text as="p" className="mt-[5px]">
-                Complete the form to contact us
+                Complete the form to Create Account
               </Text>
               <div className="flex flex-row justify-start items-start w-full mt-[39px] gap-[29px]">
                 <div className="flex flex-col items-start justify-start w-[29%] gap-[19px]">
@@ -134,39 +152,42 @@ export default function ContactUsPage() {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-row justify-center w-[69%] mt-2 p-[26px] bg-white-A700 shadow-xl rounded-[10px]">
-                  <div className="flex flex-col items-start justify-start w-full gap-[30px] my-[17px]">
-                    <div className="flex flex-row justify-start gap-[25px]">
-                      <Input
-                        type="text"
-                        name="name"
-                        placeholder="Your Name"
-                        className="w-[49%] font-light"
-                      />
-                      <Input
-                        type="email"
-                        name="email"
-                        placeholder="Your Email"
-                        className="w-[49%] font-light"
-                      />
+                <div className="flex flex-row justify-center w-[60%] mt-2 p-[26px] bg-white-A700 shadow-xl rounded-[10px]">
+                  <div className="flex flex-col items-center justify-start w-full gap-[30px] my-[17px]">
+                    <div className="flex flex-col justify-start gap-[25px] ">
+                      <div className=" border border-2  rounded-md px-4 py-2">
+                        <input
+                          type="text"
+                          name="name"
+                          placeholder="Your Name"
+                          className=" text-gray-500"
+                        />
+                      </div>
+                      <div className="w-full font-light border border-2  rounded-md px-4 py-2">
+                        <input
+                          type="email"
+                          name="email"
+                          placeholder="Your Email"
+                          className="text-gray-500"
+                        />
+                      </div>
+                      <div className="w-full font-light border border-2  rounded-md px-4 py-2">
+                        <input
+                          type="password"
+                          name="password"
+                          placeholder="Your Password"
+                          className="text-gray-500"
+                        />
+                      </div>
                     </div>
-                    <Input
-                      name="your_subject"
-                      placeholder="Your Subject"
-                      className="w-full font-light"
-                    />
-                    <TextArea
-                      name="description"
-                      placeholder="Description"
-                      className="w-full text-gray-400 font-light"
-                    />
+
                     <Button
                       color="indigo_900_01"
-                      size="5xl"
+                      size="sm"
                       shape="round"
                       className="!text-white-A700 min-w-[190px]"
                     >
-                      Send Message
+                      Submit
                     </Button>
                   </div>
                 </div>

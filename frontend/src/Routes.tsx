@@ -7,6 +7,7 @@ import ContactUs from "pages/ContactUs";
 import BloggerDetails from "pages/BloggerDetails";
 import BlogPostsSevenPage from "pages/BlogPostsSeven";
 import Blog from "pages/Blog";
+import User from "pages/User";
 
 const ProjectRoutes = () => {
   let element = useRoutes([
@@ -30,6 +31,10 @@ const ProjectRoutes = () => {
     {
       path: "blog",
       element: <Blog />,
+    },
+    {
+      path: "user",
+      element: <User />,
     },
   ]);
 
