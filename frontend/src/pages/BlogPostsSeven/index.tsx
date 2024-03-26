@@ -4,13 +4,29 @@ import { createPostInput, updatePostInput } from "@ayush-vashisht/common";
 import axios from "axios";
 
 export default function BlogPostsSevenPage() {
-  const [blogs, setBlog] = useState<createPostInput>([]);
-  useEffect(() => {
-    const data = async () => {
-      await axios.get("/api/v1/blog/bulk");
-    };
-    setBlog(data);
-  }, []);
+  const [blogs, setBlog] = useState<createPostInput>([
+    {
+      id: 1,
+      title: "Netflix Break UX Design Principles",
+      content: "Lorem Ipsum is simply dummy text of the",
+      createdAt: "15 March, 2022",
+      img: "images/img_bitmap_236x360.png",
+      perImg: "images/img_oval_copy_4_42x42.png",
+    },
+  ]);
+
+  // useEffect(() => {
+  //   const data = async () => {
+  //     await axios.get("/api/v1/blog/bulk");
+  //   };
+  //   setBlog(data);
+  // }, []);
+  // setBlog([
+  //   {
+  //     title: "Netflix Break UX Design Principles",
+  //     content: "Lorem Ipsum is simply dummy text of the",
+  //   },
+  // ]);
   return (
     <>
       <div className="flex flex-row justify-center w-full px-14 py-[12px] ">
@@ -29,7 +45,7 @@ export default function BlogPostsSevenPage() {
             <div className="flex flex-col items-center justify-start w-[24%] gap-[30px]">
               <div className="flex flex-col items-center justify-start w-full pb-4 gap-4 bg-white-A700 shadow-xs rounded">
                 <div className="flex flex-row justify-center w-full">
-                  <div className="flex flex-col items-start justify-start w-full">
+                  {/* <div className="flex flex-col items-start justify-start w-full">
                     <div className="flex flex-row justify-start">
                       <Img
                         src="images/img_bitmap_236x360.png"
@@ -42,43 +58,63 @@ export default function BlogPostsSevenPage() {
                       alt="ovalcopyfour"
                       className="h-[42px] w-[42px] mt-[-22px] ml-[26px] rounded-[50%]"
                     />
-                  </div>
+                  </div> */}
                 </div>
-                <div className="flex flex-col items-center justify-start w-[81%] gap-2">
+                {/* <div className="flex flex-col items-center justify-start w-[81%] gap-2">
                   <Heading as="h2" className="w-[96%]">
                     Netflix Break UX Design Principles
                     <br />
                   </Heading>
                   <Text as="p">Lorem Ipsum is simply dummy text of the</Text>
-                </div>
+                </div> */}
               </div>
-              {/* {blogs.map((blog, index) => {
-                <div className="flex flex-col items-center justify-start w-full pb-4 gap-4 bg-white-A700 shadow-xs rounded">
-                  <div className="flex flex-row justify-center w-full">
-                    <div className="flex flex-col items-start justify-start w-full">
-                      <div className="flex flex-row justify-start">
+              {console.log(blogs)}
+              {blogs.map(
+                (blog: {
+                  content: any;
+                  id: React.Key;
+                  img: string;
+                  perImg: string;
+                  title: string;
+                  subTitle: string;
+                }) => (
+                  <div
+                    key={blog.id}
+                    className="flex flex-col items-center justify-start w-full px-6 pb-4 gap-4 bg-white-A700 shadow-xs rounded"
+                  >
+                    <div className="flex flex-row justify-center w-full">
+                      <div className="flex flex-col items-start justify-start w-full">
+                        <div className="flex flex-row justify-start">
+                          <Img
+                            src={blog.img}
+                            alt="bitmap_one"
+                            className="w-full rounded-tr rounded-tl object-cover"
+                          />
+                        </div>
                         <Img
-                          src="{blog.img}"
-                          alt="bitmap_one"
-                          className="w-full rounded-tr rounded-tl object-cover"
+                          src={blog.perImg}
+                          alt="ovalcopyfour"
+                          className="h-[42px] w-[42px] mt-[-22px] ml-[26px] rounded-[50%]"
                         />
                       </div>
-                      <Img
-                        src="{blog.perImg}"
-                        alt="ovalcopyfour"
-                        className="h-[42px] w-[42px] mt-[-22px] ml-[26px] rounded-[50%]"
-                      />
+                    </div>
+                    <div className="flex flex-col items-center justify-start w-[81%] gap-2">
+                      <Heading as="h2" className="w-[96%]">
+                        {blog.title}
+                        <br />
+                      </Heading>
+                      <Text as="p">{blog.content.slice(0,50)}</Text>
+                      <div className="h-px w-full bg-blue_gray-100_4c" />
+                    </div>
+                    <div className="flex flex-row justify-between items-center w-full">
+                      <Text size="xs" as="p" className="!text-blue_gray-900">
+                        15 March, 2022
+                      </Text>
+                      <Button className="min-w-[66px]">UX / UI</Button>
                     </div>
                   </div>
-                  <div className="flex flex-col items-center justify-start w-[81%] gap-2">
-                    <Heading as="h2" className="w-[96%]">
-                      {blog.title}
-                      <br />
-                    </Heading>
-                    <Text as="p">{blog.subTitle}</Text>
-                  </div>
-                </div>;
-              })} */}
+                )
+              )}
 
               <div className="flex flex-col items-start justify-start w-full gap-[11px] p-6 bg-white-A700 shadow-xs rounded">
                 <Heading as="h3" className="w-[94%]">

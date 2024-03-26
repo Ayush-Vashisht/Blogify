@@ -9,6 +9,7 @@ import BlogPostsSevenPage from "pages/BlogPostsSeven";
 import Blog from "pages/Blog";
 import Register from "pages/RegisterPage";
 import Login from "pages/Login";
+import Write from "pages/Write";
 
 const ProjectRoutes = () => {
   let element = useRoutes([
@@ -40,6 +41,10 @@ const ProjectRoutes = () => {
     {
       path: "Login",
       element: <Login />,
+    },
+    {
+      path: "Write",
+      element: <Write />,
     },
   ]);
 
