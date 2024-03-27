@@ -1,14 +1,40 @@
 import React, { useState } from "react";
 import { Button, TextArea, Input, Text, Img, Heading } from "../../components";
 import Footer from "../../components/Footer";
-import { Link } from "react-router-dom";
+import { signupInput } from "@ayush-vashisht/common";
+import { Link,useNavigate  } from "react-router-dom";
+import axios from "axios";
+
 
 export default function Register() {
   const [open, setOpen] = useState(false);
+  const[ready,setReady]=useState(false);
+  
+  const [signUpInput, setSignUpInput] = useState<signupInput>({
+    username: "",
+    password: "",
+    name: "",
+  });
+  const navigate = useNavigate();
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post("/api/v1/user/signup", {
+        signUpInput,
+      });
+      setReady(true);
+      
+    } catch (error) {
+      console.error(error);
+    }
+    
+      
+  };
+  if(ready)navigate("/")
+  
   return (
     <>
       <div className="flex flex-col items-center justify-start w-full gap-[105px] bg-white-A700">
-      <header className="flex flex-row justify-between items-center w-full p-6 bg-white-A700">
+        <header className="flex flex-row justify-between items-center w-full p-6 bg-white-A700">
           <div className="flex flex-row justify-between items-center w-[55%] ml-[139px]">
             <Link to="/">
               <Img
@@ -27,7 +53,6 @@ export default function Register() {
                     Home
                   </Heading>
                 </Link>
-                
               </div>
               <Link to="/podcast">
                 <Heading
@@ -98,7 +123,7 @@ export default function Register() {
                   strokeLinejoin="round"
                   d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
                 />
-              </svg> 
+              </svg>
             </Link>
 
             <Link to="/register">
@@ -136,6 +161,13 @@ export default function Register() {
                         <input
                           type="text"
                           name="name"
+                          value={signUpInput.name}
+                          onChange={(e) => {
+                            setSignUpInput({
+                              ...signUpInput,
+                              name: e.target.value,
+                            });
+                          }}
                           placeholder="Your Name"
                           className=" text-gray-500"
                         />
@@ -144,6 +176,13 @@ export default function Register() {
                         <input
                           type="email"
                           name="email"
+                          value={signUpInput.username}
+                          onChange={(e) => {
+                            setSignUpInput({
+                              ...signUpInput,
+                              username: e.target.value,
+                            });
+                          }}
                           placeholder="Your Email"
                           className="text-gray-500"
                         />
@@ -152,6 +191,13 @@ export default function Register() {
                         <input
                           type="password"
                           name="password"
+                          value={signUpInput.password}
+                          onChange={(e) => {
+                            setSignUpInput({
+                              ...signUpInput,
+                              password: e.target.value,
+                            });
+                          }}
                           placeholder="Your Password"
                           className="text-gray-500"
                         />
@@ -163,6 +209,7 @@ export default function Register() {
                       size="sm"
                       shape="round"
                       className="!text-white-A700 min-w-[190px]"
+                      onClick={handleSubmit}
                     >
                       Submit
                     </Button>
@@ -171,7 +218,12 @@ export default function Register() {
               </div>
               <div className="flex items-center justify-center mt-[39px] w-full !text-blue_gray-600 gap-1">
                 Already have an account!
-                <Link to="/login" className="text-gray-600_01 hover:underline underline-offset-4">Sign In</Link>
+                <Link
+                  to="/login"
+                  className="text-gray-600_01 hover:underline underline-offset-4"
+                >
+                  Sign In
+                </Link>
               </div>
             </div>
           </div>
