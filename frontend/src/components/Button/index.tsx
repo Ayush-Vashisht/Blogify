@@ -24,7 +24,7 @@ const variants = {
   },
 } as const;
 const sizes = {
-  "2xl": "h-[57px] px-[25px] text-lg",
+  "2xl": "h-[30px] px-[15px] text-lg",
   "3xl": "h-[62px] px-[29px] text-lg",
   sm: "h-[31px] px-3.5 text-lg",
   xs: "h-[28px] px-[13px] text-base",
@@ -58,7 +58,7 @@ const Button: React.FC<React.PropsWithChildren<ButtonProps>> = ({
   rightIcon,
   shape = "circle",
   variant = "fill",
-  size = "6xl",
+  size = "2xl",
   color = "indigo_900_4f",
   ...restProps
 }) => {

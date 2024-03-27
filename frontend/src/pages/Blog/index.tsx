@@ -8,7 +8,7 @@ const Blog = () => {
   return (
     <>
       <div className="flex flex-col items-center justify-start w-full gap-[90px] bg-white-A700">
-      <header className="flex flex-row justify-between items-center w-full p-6 bg-white-A700">
+        <header className="flex flex-row justify-between items-center w-full p-6 bg-white-A700">
           <div className="flex flex-row justify-between items-center w-[55%] ml-[139px]">
             <Link to="/">
               <Img
@@ -27,7 +27,6 @@ const Blog = () => {
                     Home
                   </Heading>
                 </Link>
-                
               </div>
               <Link to="/podcast">
                 <Heading
@@ -99,7 +98,7 @@ const Blog = () => {
                   strokeLinejoin="round"
                   d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
                 />
-              </svg> 
+              </svg>
             </Link>
 
             <Link to="/register">
@@ -122,8 +121,283 @@ const Blog = () => {
         </header>
         <div className="flex flex-col items-center justify-start w-full gap-[99px] max-w-[1111px]">
           <div className="flex flex-col items-center justify-start w-full gap-[100px]">
-            <div className="flex flex-row justify-start items-start w-full gap-[29px]">
-              <BlogPostsSevenPage />
+            <div className="flex flex-col justify-start items-start w-full gap-[29px]">
+              {/* <BlogPostsSevenPage />
+               */}
+              <div className="flex flex-col justify-start w-full gap-[30px]">
+                <div className="flex flex-col items-center justify-start  gap-[30px]">
+                  <div className="flex  items-center justify-between w-full pb-4 gap-4 h-[280px] bg-white-A700 shadow-xs rounded">
+                    <div className="flex flex-col items-start justify-start w-[81%] gap-1 ml-[26px]   ">
+                      <div className="flex  items-center justify-center gap-1 ">
+                        <div>
+                          <Img
+                            src="images/img_oval_copy_4_42x42.png"
+                            alt="ovalcopyfour"
+                            className="h-[42px] w-[42px] mt-[-22px] rounded-[50%]"
+                          />
+                        </div>
+                        <div className="flex flex-col items-start justify-center h-[42px]">
+                          <Text size="s" className="text-blue_gray-900 ">
+                            John doe
+                          </Text>
+                          <Text
+                            size="xs"
+                            as="p"
+                            className="!text-blue_gray-900"
+                          >
+                            15 March, 2022
+                          </Text>
+                        </div>
+                      </div>
+                      <div className="h-px w-full mt-4 bg-blue_gray-100_4c" />
+                      <Heading as="h2" className="w-full">
+                        How to create a UX Writing portfolio as a beginner
+                      </Heading>
+                      <Text as="p">
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the
+                        industry&#39;s.
+                      </Text>
+                      <div className="flex flex-row justify-start w-[40%] gap-3">
+                        <div className="flex flex-row justify-start ">
+                          <Button className="w-full text-xs">UX DESIGN</Button>
+                        </div>
+                        <div className="flex flex-row justify-start  ">
+                          <Button color="red_50" className="w-full text-xs">
+                            UI DESIGN
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-col justify-center w-[15%]">
+                      <div className="flex flex-col items-start justify-start">
+                        <div className="flex flex-row justify-start mr-[26px]">
+                          <Img
+                            src="images/img_bitmap.png"
+                            alt="bitmap_three"
+                            className="w-full rounded-tr rounded-tl object-cover"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex  items-center justify-between w-full pb-4 gap-4 h-[280px] bg-white-A700 shadow-xs rounded">
+                    <div className="flex flex-col items-start justify-start w-[81%] gap-1 ml-[26px]   ">
+                      <div className="flex  items-center justify-center gap-1 ">
+                        <div>
+                          <Img
+                            src="images/img_oval_copy_4_42x42.png"
+                            alt="ovalcopyfour"
+                            className="h-[42px] w-[42px] mt-[-22px] rounded-[50%]"
+                          />
+                        </div>
+                        <div className="flex flex-col items-start justify-center h-[42px]">
+                          <Text size="s" className="text-blue_gray-900 ">
+                            John doe
+                          </Text>
+                          <Text
+                            size="xs"
+                            as="p"
+                            className="!text-blue_gray-900"
+                          >
+                            15 March, 2022
+                          </Text>
+                        </div>
+                      </div>
+                      <div className="h-px w-full mt-4 bg-blue_gray-100_4c" />
+                      <Heading as="h2" className="w-full">
+                        How to create a UX Writing portfolio as a beginner
+                      </Heading>
+                      <Text as="p">
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the
+                        industry&#39;s.
+                      </Text>
+                      <div className="flex flex-row justify-start w-[40%] gap-3">
+                        <div className="flex flex-row justify-start ">
+                          <Button className="w-full text-xs">UX DESIGN</Button>
+                        </div>
+                        <div className="flex flex-row justify-start  ">
+                          <Button color="red_50" className="w-full text-xs">
+                            UI DESIGN
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-col justify-center w-[15%]">
+                      <div className="flex flex-col items-start justify-start">
+                        <div className="flex flex-row justify-start mr-[26px]">
+                          <Img
+                            src="images/img_bitmap.png"
+                            alt="bitmap_three"
+                            className="w-full rounded-tr rounded-tl object-cover"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex  items-center justify-between w-full pb-4 gap-4 h-[280px] bg-white-A700 shadow-xs rounded">
+                    <div className="flex flex-col items-start justify-start w-[81%] gap-1 ml-[26px]   ">
+                      <div className="flex  items-center justify-center gap-1 ">
+                        <div>
+                          <Img
+                            src="images/img_oval_copy_4_42x42.png"
+                            alt="ovalcopyfour"
+                            className="h-[42px] w-[42px] mt-[-22px] rounded-[50%]"
+                          />
+                        </div>
+                        <div className="flex flex-col items-start justify-center h-[42px]">
+                          <Text size="s" className="text-blue_gray-900 ">
+                            John doe
+                          </Text>
+                          <Text
+                            size="xs"
+                            as="p"
+                            className="!text-blue_gray-900"
+                          >
+                            15 March, 2022
+                          </Text>
+                        </div>
+                      </div>
+                      <div className="h-px w-full mt-4 bg-blue_gray-100_4c" />
+                      <Heading as="h2" className="w-full">
+                        How to create a UX Writing portfolio as a beginner
+                      </Heading>
+                      <Text as="p">
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the
+                        industry&#39;s.
+                      </Text>
+                      <div className="flex flex-row justify-start w-[40%] gap-3">
+                        <div className="flex flex-row justify-start ">
+                          <Button className="w-full text-xs">UX DESIGN</Button>
+                        </div>
+                        <div className="flex flex-row justify-start  ">
+                          <Button color="red_50" className="w-full text-xs">
+                            UI DESIGN
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-col justify-center w-[15%]">
+                      <div className="flex flex-col items-start justify-start">
+                        <div className="flex flex-row justify-start mr-[26px]">
+                          <Img
+                            src="images/img_bitmap.png"
+                            alt="bitmap_three"
+                            className="w-full rounded-tr rounded-tl object-cover"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex  items-center justify-between w-full pb-4 gap-4 h-[280px] bg-white-A700 shadow-xs rounded">
+                    <div className="flex flex-col items-start justify-start w-[81%] gap-1 ml-[26px]   ">
+                      <div className="flex  items-center justify-center gap-1 ">
+                        <div>
+                          <Img
+                            src="images/img_oval_copy_4_42x42.png"
+                            alt="ovalcopyfour"
+                            className="h-[42px] w-[42px] mt-[-22px] rounded-[50%]"
+                          />
+                        </div>
+                        <div className="flex flex-col items-start justify-center h-[42px]">
+                          <Text size="s" className="text-blue_gray-900 ">
+                            John doe
+                          </Text>
+                          <Text
+                            size="xs"
+                            as="p"
+                            className="!text-blue_gray-900"
+                          >
+                            15 March, 2022
+                          </Text>
+                        </div>
+                      </div>
+                      <div className="h-px w-full mt-4 bg-blue_gray-100_4c" />
+                      <Heading as="h2" className="w-full">
+                        How to create a UX Writing portfolio as a beginner
+                      </Heading>
+                      <Text as="p">
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the
+                        industry&#39;s.
+                      </Text>
+                      <div className="flex flex-row justify-start w-[40%] gap-3">
+                        <div className="flex flex-row justify-start ">
+                          <Button className="w-full text-xs">UX DESIGN</Button>
+                        </div>
+                        <div className="flex flex-row justify-start  ">
+                          <Button color="red_50" className="w-full text-xs">
+                            UI DESIGN
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-col justify-center w-[15%]">
+                      <div className="flex flex-col items-start justify-start">
+                        <div className="flex flex-row justify-start mr-[26px]">
+                          <Img
+                            src="images/img_bitmap.png"
+                            alt="bitmap_three"
+                            className="w-full rounded-tr rounded-tl object-cover"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* {blogs.map(
+                    (blog: {
+                      content: any;
+                      id: React.Key;
+                      img: string;
+                      perImg: string;
+                      title: string;
+                      subTitle: string;
+                    }) => (
+                      <div
+                        key={blog.id}
+                        className="flex flex-col items-center justify-start w-full px-6 pb-4 gap-4 bg-white-A700 shadow-xs rounded"
+                      >
+                        <div className="flex flex-row justify-center w-full">
+                          <div className="flex flex-col items-start justify-start w-full">
+                            <div className="flex flex-row justify-start">
+                              <Img
+                                src={blog.img}
+                                alt="bitmap_one"
+                                className="w-full rounded-tr rounded-tl object-cover"
+                              />
+                            </div>
+                            <Img
+                              src={blog.perImg}
+                              alt="ovalcopyfour"
+                              className="h-[42px] w-[42px] mt-[-22px] ml-[26px] rounded-[50%]"
+                            />
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-center justify-start w-[81%] gap-2">
+                          <Heading as="h2" className="w-[96%]">
+                            {blog.title}
+                            <br />
+                          </Heading>
+                          <Text as="p">{blog.content.slice(0, 50)}</Text>
+                          <div className="h-px w-full bg-blue_gray-100_4c" />
+                        </div>
+                        <div className="flex flex-row justify-between items-center w-full">
+                          <Text
+                            size="xs"
+                            as="p"
+                            className="!text-blue_gray-900"
+                          >
+                            15 March, 2022
+                          </Text>
+                          <Button className="min-w-[66px]">UX / UI</Button>
+                        </div>
+                      </div>
+                    )
+                  )} */}
+                </div>
+              </div>
             </div>
           </div>
         </div>
