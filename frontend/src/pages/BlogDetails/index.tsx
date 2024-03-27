@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Text, Heading, Img, Button } from "../../components";
 import Footer from "../../components/Footer";
+import { signupInput } from "@ayush-vashisht/common";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -14,10 +15,13 @@ export default function BlogDetailsPage() {
     };
     setBlog(data);
   }, [id]);
+  if (blog) {
+    const { author } = blog;
+  }
   return (
     <>
       <div className="flex flex-col items-center justify-start w-full bg-white-A700">
-      <header className="flex flex-row justify-between items-center w-full p-6 bg-white-A700">
+        <header className="flex flex-row justify-between items-center w-full p-6 bg-white-A700">
           <div className="flex flex-row justify-between items-center w-[55%] ml-[139px]">
             <Link to="/">
               <Img
@@ -106,7 +110,7 @@ export default function BlogDetailsPage() {
                   strokeLinejoin="round"
                   d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
                 />
-              </svg> 
+              </svg>
             </Link>
 
             <Link to="/register">
@@ -134,7 +138,7 @@ export default function BlogDetailsPage() {
                 <div className="flex flex-col items-center justify-start w-full">
                   <Img
                     src="images/img_rectangle_20.png"
-                    // src="{blog.bgImg}"
+                    // src="{blog.img}"
                     alt="image_one"
                     className="w-full object-cover rounded-[25px]"
                   />
@@ -152,6 +156,7 @@ export default function BlogDetailsPage() {
                       <div className="flex flex-row justify-start items-center w-[31%] gap-3.5">
                         <Img
                           src="images/img_ellipse_5.png"
+                          // src={author.img}
                           alt="circleimage"
                           className="h-[70px] w-[70px] rounded-[50%]"
                         />
@@ -162,7 +167,7 @@ export default function BlogDetailsPage() {
                             className="!text-blue_gray-600 !font-semibold"
                           >
                             By Jhone Leonardo
-                            {/* {blog.author} */}
+                            {/* {author.name} */}
                           </Heading>
                           <Text size="xs" as="p" className="text-center">
                             12 September, 2020
@@ -200,38 +205,7 @@ export default function BlogDetailsPage() {
                   named “Enterprise.”
                   {/* {blog.content} */}
                 </Text>
-                {/* <div className="flex flex-row justify-start items-start w-[97%] mt-[50px] gap-5">
-                  <Img
-                    src="images/img_right_quotation_sign.svg"
-                    alt="rightquotation"
-                    className="h-[40px] w-[40px]"
-                  />
-                  <div className="flex flex-col items-start justify-start w-[94%] gap-3.5">
-                    <Heading
-                      size="xl"
-                      as="h3"
-                      className="!text-blue_gray-600 !font-merriweather italic"
-                    >
-                      There is a way out of every box, a solution to every
-                      puzzle; it’s just a matter of finding it.
-                    </Heading>
-                    <Text as="p">JEAN-LUC PICARD</Text>
-                  </div>
-                </div> */}
-                {/* <Text as="p" className="mt-[49px] leading-[35px]">
-                  <span className="text-blue_gray-600">
-                    The game’s not big enough unless it scares you a little.
-                    Wait a minute – you’ve been declared dead. You can’t give{" "}
-                  </span>
-                  <span className="text-blue_gray-600 font-bold">
-                    orders around
-                  </span>
-                  <span className="text-blue_gray-600">
-                    here. I’ll alert the crew. What? We’re not at all alike!
-                    Flair is what marks the difference between artistry and mere
-                    competence.
-                  </span>
-                </Text> */}
+                
                 <Text as="p" className="mt-2.5 leading-[35px]">
                   Did you come here for something in particular or just general
                   Riker-bashing? And blowing into maximum warp speed, you
@@ -243,13 +217,6 @@ export default function BlogDetailsPage() {
                   years? Fate. It protects fools, little children, and ships
                   named “Enterprise.”
                 </Text>
-                {/* <Heading
-                  size="lg"
-                  as="h4"
-                  className="mt-[45px] !text-blue_gray-600 !font-merriweather"
-                >
-                  Lorem Ipsum Dolor Sit Amet
-                </Heading> */}
                 <Text as="p" className="mt-5 leading-[35px]">
                   Did you come here for something in particular or just general
                   Riker-bashing? And blowing into maximum warp speed, you
@@ -260,18 +227,6 @@ export default function BlogDetailsPage() {
                   years? Fate. It protects fools, little children, and ships
                   named “Enterprise.”
                 </Text>
-                {/* <div className="flex flex-row mt-[50px] gap-[29px]">
-                  <Img
-                    src="images/img_rectangle_23.png"
-                    alt="rectangle"
-                    className="w-[49%] object-cover rounded-[15px]"
-                  />
-                  <Img
-                    src="images/img_rectangle_24.png"
-                    alt="rectangle"
-                    className="w-[49%] object-cover rounded-[15px]"
-                  />
-                </div> */}
                 <Text as="p" className="mt-[50px] leading-[35px]">
                   What’s a knock-out like you doing in a computer-generated gin
                   joint like this? But the probability of making a six is no
@@ -287,22 +242,6 @@ export default function BlogDetailsPage() {
                   course with the Borg ship. Yesterday I did not know how to eat
                   gagh. You’re going to be an interesting companion.
                 </Text>
-                {/* <div className="flex flex-col items-start justify-start w-[43%] mt-[27px] ml-[30px] gap-3.5">
-                  <div className="flex flex-row justify-start items-start w-[61%] gap-[15px]">
-                    <div className="h-[10px] w-[10px] mt-[5px] bg-blue_gray-600 rounded-[50%]" />
-                    <Text as="p">Lorem ipsum dolor sit amet.</Text>
-                  </div>
-                  <div className="flex flex-row justify-start items-center w-[82%] gap-[15px]">
-                    <div className="h-[10px] w-[10px] bg-blue_gray-600 rounded-[50%]" />
-                    <Text as="p">At vero eos et accusamus et iusto odio.</Text>
-                  </div>
-                  <div className="flex flex-row justify-start items-start w-full gap-[15px]">
-                    <div className="h-[10px] w-[10px] mt-[5px] bg-blue_gray-600 rounded-[50%]" />
-                    <Text as="p">
-                      Excepteur sint occaecat cupidatat non proident.
-                    </Text>
-                  </div>
-                </div> */}
                 <Text as="p" className="mt-[26px] leading-[35px]">
                   Could someone survive inside a transporter buffer for 75
                   years? Fate. It protects fools, little children, and ships

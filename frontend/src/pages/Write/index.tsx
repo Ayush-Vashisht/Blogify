@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Text, Heading, Img, Button } from "../../components";
 import Footer from "../../components/Footer";
 import { createPostInput, updatePostInput } from "@ayush-vashisht/common";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import { UserContext } from "contexts/UserContext";
 
 function ContentArea({ onChange, value }) {
   const [text, setText] = useState("");
@@ -38,7 +39,7 @@ export default function BlogDetailsPage() {
     img: "",
   });
   const [photoLink, setPhotoLink] = useState("");
-
+  const { user } = useContext(UserContext);
   const today = new Date();
   const options: {
     day: number | string;
@@ -266,6 +267,7 @@ export default function BlogDetailsPage() {
                       <div className="flex flex-row justify-start items-center w-[31%] gap-3.5">
                         <Img
                           src="images/img_ellipse_5.png"
+                          // src={user.img}
                           alt="circleimage"
                           className="h-[70px] w-[70px] rounded-[50%]"
                         />
@@ -275,8 +277,7 @@ export default function BlogDetailsPage() {
                             as="h2"
                             className="!text-blue_gray-600 !font-semibold"
                           >
-                            By Jhone Leonardo
-                            {/* {user.name} */}
+                            {user.name}
                           </Heading>
                           <Text size="xs" as="p" className="text-center">
                             {formattedDate}

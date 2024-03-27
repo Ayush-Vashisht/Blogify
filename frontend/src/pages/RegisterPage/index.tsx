@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, TextArea, Input, Text, Img, Heading } from "../../components";
 import Footer from "../../components/Footer";
 import { signupInput } from "@ayush-vashisht/common";
-import { Link,useNavigate  } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { UserContext } from "contexts/UserContext";
 
 export default function Register() {
   const [open, setOpen] = useState(false);
-  const[ready,setReady]=useState(false);
-  
+  const [ready, setReady] = useState(false);
+  const { user, setUser } = useContext(UserContext);
+
   const [signUpInput, setSignUpInput] = useState<signupInput>({
     username: "",
     password: "",
@@ -18,19 +19,19 @@ export default function Register() {
   const navigate = useNavigate();
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("/api/v1/user/signup", {
+      const { data } = await axios.post("/api/v1/user/signup", {
         signUpInput,
       });
+      alert("Registration Successfull");
+      setUser(data);
       setReady(true);
-      
     } catch (error) {
+      alert("Something went wrong");
       console.error(error);
     }
-    
-      
   };
-  if(ready)navigate("/")
-  
+  if (ready) navigate("/");
+
   return (
     <>
       <div className="flex flex-col items-center justify-start w-full gap-[105px] bg-white-A700">
