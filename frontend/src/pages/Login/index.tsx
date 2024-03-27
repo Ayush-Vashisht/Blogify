@@ -1,10 +1,32 @@
 import React, { useState } from "react";
 import { Button, TextArea, Input, Text, Img, Heading } from "../../components";
-import Footer from "../../components/Footer";
-import { Link } from "react-router-dom";
+import { signinInput } from "@ayush-vashisht/common";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Register() {
   const [open, setOpen] = useState(false);
+  const[ready,setReady]=useState(false);
+  
+  const [signInInput, setSignInInput] = useState<signinInput>({
+    username: "",
+    password: ""
+  });
+  const navigate = useNavigate();
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post("/api/v1/user/signin", {
+        signinInput,
+      });
+      setReady(true);
+      
+    } catch (error) {
+      alert("Incorrect credentials");
+      console.error(error);
+    }
+    
+  };
+  if(ready)navigate("/")
   return (
     <>
       <div className="flex flex-col items-center justify-start w-full gap-[105px] bg-white-A700">
@@ -136,6 +158,13 @@ export default function Register() {
                         <input
                           type="email"
                           name="email"
+                          value={signInInput.username}
+                          onChange={(e) => {
+                            setSignInInput({
+                              ...signInInput,
+                              username: e.target.value,
+                            });
+                          }}
                           placeholder="Your Email"
                           className="text-gray-500"
                         />
@@ -144,6 +173,13 @@ export default function Register() {
                         <input
                           type="password"
                           name="password"
+                          value={signInInput.password}
+                          onChange={(e) => {
+                            setSignInInput({
+                              ...signInInput,
+                              password: e.target.value,
+                            });
+                          }}
                           placeholder="Your Password"
                           className="text-gray-500"
                         />
@@ -155,6 +191,7 @@ export default function Register() {
                       size="sm"
                       shape="round"
                       className="!text-white-A700 min-w-[190px]"
+                      onClick={handleSubmit}
                     >
                       Sign In
                     </Button>
