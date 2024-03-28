@@ -1,18 +1,23 @@
 import { Hono } from "hono";
-import { PrismaClient } from "@prisma/client/edge";
+import { Prisma, PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
-import { sign } from "hono/jwt";
-import { signupInput, signinInput } from "@ayush-vashisht/common";
+import { sign, verify } from "hono/jwt";
+import { signupInput, signinInput, SigninType } from "@ayush-vashisht/common";
+import { getCookie, setCookie } from "hono/cookie";
 
 export const userRouter = new Hono<{
   Bindings: {
     DATABASE_URL: string;
     JWT_SECRET: string;
   };
+  Variables: {
+    userId: string;
+  };
 }>();
 
 userRouter.post("/signup", async (c) => {
   const body = await c.req.json();
+  console.log(body);
   const { success } = await signupInput.safeParse(body);
 
   if (!success) {
@@ -32,7 +37,6 @@ userRouter.post("/signup", async (c) => {
         name: body.name,
       },
     });
-    console.log(user);
     const token = await sign(
       {
         id: user.id,
@@ -71,15 +75,47 @@ userRouter.post("/signin", async (c) => {
         message: "Incorrect creds",
       });
     }
-    const jwt = await sign(
+    const token = await sign(
       {
         id: user.id,
       },
       c.env.JWT_SECRET
     );
-    return c.text(jwt);
+    const {id,email,name}=user;
+    return c.json({token,id,email,name});
   } catch (error) {
     console.error(error);
     return c.json("Invalid");
   }
 });
+
+userRouter.get("/profile", async (c) => {
+  const authHeader = c.req.header("authorization") || "";
+  function getTokenFromLocalStorage(): string | null {
+    return localStorage.getItem("token");
+}
+const token = getTokenFromLocalStorage();
+console.log(token)
+
+console.log(getTokenFromLocalStorage());
+  try {
+    const user = await verify(authHeader, c.env.JWT_SECRET);
+    const prisma = new PrismaClient({
+      datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+    if (user) {
+      // const data = await prisma.user.findFirst(user.id);
+      const data = await prisma.user.findUnique({
+        where: {
+          id: user.id,
+        },
+      });
+      return c.json(data);
+    } else c.json(null);
+  } catch (error) {
+    c.status(403);
+    // return c.text("You are not logged in");
+    return c.json(error);
+  }
+});
+

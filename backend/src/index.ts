@@ -9,7 +9,10 @@ const app = new Hono<{
     JWT_SECRET: string;
   };
 }>();
-app.use("/*", cors());
+app.use("/*", cors({
+  credentials: true,
+  origin: "http://localhost:5173",
+}));
 app.get("/",(c)=>{
   return c.json("OK");
 })
