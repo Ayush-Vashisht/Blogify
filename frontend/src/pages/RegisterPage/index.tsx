@@ -19,8 +19,11 @@ export default function Register() {
   const navigate = useNavigate();
   const handleSubmit = async () => {
     try {
+      const { username, password, name } = signUpInput;
       const { data } = await axios.post("/api/v1/user/signup", {
-        signUpInput,
+        username,
+        password,
+        name,
       });
       alert("Registration Successfull");
       setUser(data);

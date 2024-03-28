@@ -1,24 +1,23 @@
 import React, { createContext, useEffect, useState } from "react";
-import { signupInput } from "@ayush-vashisht/common";
+import { signinInput } from "@ayush-vashisht/common";
 import axios from "axios";
 
-export const UserContext = createContext<signupInput | null>({
+export const UserContext = createContext<signinInput | null>({
   name: "Ayush",
-  username: "test@gmail.com",
-  password: "test1234",
+  username: "test@gmail.com"
 });
 
 export function UserContextProvider({ children }) {
-  const [user, setUser] = useState<signupInput | null>({
+  const [user, setUser] = useState<signinInput | null>({
     name: "Ayush",
-    username: "test@gmail.com",
-    password: "test1234",
+    username: "test@gmail.com"
   });
   const [ready, setReady] = useState<Boolean>(false);
   useEffect(() => {
     if (!user) {
       const checkUser = async () => {
         const { data } = await axios.get("/api/v1/user/profile");
+        console.log(data);
         setUser(data);
         setReady(true);
       };

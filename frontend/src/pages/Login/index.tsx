@@ -8,21 +8,26 @@ import { UserContext } from "contexts/UserContext";
 export default function Register() {
   const [open, setOpen] = useState(false);
   const [ready, setReady] = useState(false);
-  const { setUser } = useContext(UserContext);
+  const { setUser, user } = useContext(UserContext);
 
   const [signInInput, setSignInInput] = useState<signinInput>({
     username: "",
     password: "",
   });
   const navigate = useNavigate();
-  const handleSubmit = async () => {``
+  const handleSubmit = async () => {
+    ``;
     try {
+      const { username, password } = signInInput;
       const { data } = await axios.post("/api/v1/user/signin", {
-        signinInput,
+        username,
+        password,
       });
-      alert("login successfull");
-      setUser(data);
+      setUser({ username: data.email, name: data.name });
+      const { token } = data;
+      localStorage.setItem("token", token);
       setReady(true);
+      alert("login successfull");
     } catch (error) {
       alert("Incorrect credentials");
       console.error(error);
