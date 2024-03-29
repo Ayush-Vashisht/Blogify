@@ -1,10 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, Img, Heading, Button, Input } from "../../components";
 import BlogPostsSevenPage from "pages/BlogPostsSeven";
 import { Link } from "react-router-dom";
+import { createPostInput, updatePostInput } from "@ayush-vashisht/common";
+import axios from "axios";
 
+interface BlogsProps {
+    content: string;
+    title: string;
+    id: string;
+    author: {
+      name: string;
+    };
+}
 const Blog = () => {
   const [open, setOpen] = useState(false);
+  const [blogs, setBlogs] = useState<BlogsProps[]>([]);
+
+  useEffect(() => {
+    const getBlogs = async () => {
+      const response = await axios.get("/api/v1/blog/bulk");
+      setBlogs(response.data.blogs);
+    };
+    getBlogs();
+  }, []);
+
   return (
     <>
       <div className="flex flex-col items-center justify-start w-full gap-[90px] bg-white-A700">
@@ -36,7 +56,7 @@ const Blog = () => {
                   Podcast
                 </Heading>
               </Link>
-              <Link to="/blog">
+              <Link to="/blogs">
                 <Heading
                   as="h6"
                   className="!text-indigo-900_01 tracking-[0.12px] text-center"
@@ -346,16 +366,9 @@ const Blog = () => {
                       </div>
                     </div>
                   </div>
-                  {/* {blogs.map(
-                    (blog: {
-                      content: any;
-                      id: React.Key;
-                      img: string;
-                      perImg: string;
-                      title: string;
-                      subTitle: string;
-                    }) => (
-                      <div
+                  {blogs.map(
+                    (blog:BlogsProps) => (
+                      <Link to={`/blogss/${blog.id}`}
                         key={blog.id}
                         className="flex flex-col items-center justify-start w-full px-6 pb-4 gap-4 bg-white-A700 shadow-xs rounded"
                       >
@@ -363,13 +376,13 @@ const Blog = () => {
                           <div className="flex flex-col items-start justify-start w-full">
                             <div className="flex flex-row justify-start">
                               <Img
-                                src={blog.img}
+                                // src={blog.img}
                                 alt="bitmap_one"
                                 className="w-full rounded-tr rounded-tl object-cover"
                               />
                             </div>
                             <Img
-                              src={blog.perImg}
+                              // src={blog.perImg}
                               alt="ovalcopyfour"
                               className="h-[42px] w-[42px] mt-[-22px] ml-[26px] rounded-[50%]"
                             />
@@ -393,9 +406,9 @@ const Blog = () => {
                           </Text>
                           <Button className="min-w-[66px]">UX / UI</Button>
                         </div>
-                      </div>
+                      </Link>
                     )
-                  )} */}
+                  )}
                 </div>
               </div>
             </div>
@@ -488,7 +501,7 @@ const Blog = () => {
                         Podcast
                       </Text>
                     </Link>
-                    <Link to="/blog">
+                    <Link to="/blogs">
                       <Text as="p" className="!text-white-A700">
                         Blog
                       </Text>

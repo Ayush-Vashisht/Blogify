@@ -31,7 +31,11 @@ const ProjectRoutes = () => {
       element: <BloggerDetails />,
     },
     {
-      path: "blog",
+      path: "blogss/:id",
+      element: <BlogDetails />,
+    },
+    {
+      path: "blogs",
       element: <Blog />,
     },
     {

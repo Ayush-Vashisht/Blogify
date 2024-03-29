@@ -37,7 +37,7 @@ export default function LandingPagePage() {
                   Podcast
                 </Heading>
               </Link>
-              <Link to="/blog">
+              <Link to="/blogs">
                 <Heading
                   as="h6"
                   className="!text-indigo-200_01 tracking-[0.12px] text-center"
@@ -98,7 +98,7 @@ export default function LandingPagePage() {
                   strokeLinejoin="round"
                   d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
                 />
-              </svg> 
+              </svg>
             </Link>
 
             <Link to="/register">
@@ -152,13 +152,15 @@ export default function LandingPagePage() {
                 />
               </div>
               <div className="flex flex-row justify-start w-[51%] mt-[-4px] gap-[25px]">
-                <Button
-                  color="indigo_900_01"
-                  size="4xl"
-                  className="!text-white-A700 tracking-[0.12px] shadow-sm min-w-[221px] rounded-[35px] hover:bg-white-A700 hover:!text-gray-700 hover:ring-4"
-                >
-                  Read Blogs
-                </Button>
+                <Link to="/blogs">
+                  <Button
+                    color="indigo_900_01"
+                    size="4xl"
+                    className="!text-white-A700 tracking-[0.12px] shadow-sm min-w-[221px] rounded-[35px] hover:bg-white-A700 hover:!text-gray-700 hover:ring-4"
+                  >
+                    Read Blogs
+                  </Button>
+                </Link>
                 <Button
                   color="indigo_200"
                   size="4xl"
@@ -391,7 +393,7 @@ export default function LandingPagePage() {
                         Podcast
                       </Text>
                     </Link>
-                    <Link to="/blog">
+                    <Link to="/blogs">
                       <Text as="p" className="!text-white-A700">
                         Blog
                       </Text>

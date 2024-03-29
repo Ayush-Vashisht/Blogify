@@ -37,7 +37,7 @@ export default function ContactUsPage() {
                   Podcast
                 </Heading>
               </Link>
-              <Link to="/blog">
+              <Link to="/blogs">
                 <Heading
                   as="h6"
                   className="!text-indigo-200_01 tracking-[0.12px] text-center"
@@ -245,7 +245,7 @@ export default function ContactUsPage() {
                         Podcast
                       </Text>
                     </Link>
-                    <Link to="/blog">
+                    <Link to="/blogs">
                       <Text as="p" className="!text-white-A700">
                         Blog
                       </Text>

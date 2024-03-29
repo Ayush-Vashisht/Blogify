@@ -36,15 +36,15 @@ export default function BlogDetailsPage() {
   const [blog, setBlog] = useState<createPostInput>({
     title: "",
     content: "",
-    img: "",
+    // img: "",
   });
   const [photoLink, setPhotoLink] = useState("");
   const { user } = useContext(UserContext);
   const today = new Date();
   const options: {
-    day: number | string;
+    day: string;
     month: string;
-    year: string | number;
+    year: string;
   } = {
     day: "2-digit",
     month: "short",
@@ -53,7 +53,9 @@ export default function BlogDetailsPage() {
   const formattedDate = today.toLocaleDateString("en-US", options);
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("/api/v1/blog", { blog });
+      const { title, content } = blog;
+      const {data} = await axios.post("/api/v1/blog", { title, content,authorId:"d1e7e5cf-3dea-45c2-9da0-3d768bfc92a2" });
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
@@ -72,7 +74,6 @@ export default function BlogDetailsPage() {
       img: photoLink,
     });
   }
-  console.log(blog);
   return (
     <>
       <div className="flex flex-col items-center justify-start w-full bg-white-A700">
@@ -104,7 +105,7 @@ export default function BlogDetailsPage() {
                   Podcast
                 </Heading>
               </Link>
-              <Link to="/blog">
+              <Link to="/blogs">
                 <Heading
                   as="h6"
                   className="!text-indigo-200_01 tracking-[0.12px] text-center cursor-pointer"
@@ -192,10 +193,16 @@ export default function BlogDetailsPage() {
               <div className="flex flex-row justify-center w-full">
                 <div className="flex flex-col items-center justify-start w-full">
                   <div className="items-center justify-center w-full">
-                    {blog.img ? (
+                    <Img
+                      src="images/img_rectangle_20.png"
+                      // src={blog.img}
+                      alt="image_one"
+                      className="w-full h-[400px] object-cover rounded-[25px]"
+                    />
+                    {/* {blog.img ? (
                       <Img
-                        // src="images/img_rectangle_20.png"
-                        src={blog.img}
+                        src="images/img_rectangle_20.png"
+                        // src={blog.img}
                         alt="image_one"
                         className="w-full h-[400px] object-cover rounded-[25px]"
                       />
@@ -241,7 +248,7 @@ export default function BlogDetailsPage() {
                           />
                         </div>
                       </div>
-                    )}
+                    )} */}
                   </div>
 
                   <div className="flex flex-col items-start justify-center w-[84%] mt-[-132px] p-12 bg-white-A700 shadow-lg rounded-[25px]">
