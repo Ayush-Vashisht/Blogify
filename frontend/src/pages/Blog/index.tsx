@@ -18,7 +18,6 @@ interface BlogsProps {
   };
 }
 const Blog = () => {
-  const [open, setOpen] = useState(false);
   const [blogs, setBlogs] = useState<BlogsProps[]>([]);
   useEffect(() => {
     const getBlogs = async () => {
