@@ -6,12 +6,12 @@ import { createPostInput, updatePostInput } from "@ayush-vashisht/common";
 import axios from "axios";
 
 interface BlogsProps {
-    content: string;
-    title: string;
-    id: string;
-    author: {
-      name: string;
-    };
+  content: string;
+  title: string;
+  id: string;
+  author: {
+    name: string;
+  };
 }
 const Blog = () => {
   const [open, setOpen] = useState(false);
@@ -19,7 +19,11 @@ const Blog = () => {
 
   useEffect(() => {
     const getBlogs = async () => {
-      const response = await axios.get("/api/v1/blog/bulk");
+      const response = await axios.get("/api/v1/blog/bulk", {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
       setBlogs(response.data.blogs);
     };
     getBlogs();
@@ -366,49 +370,44 @@ const Blog = () => {
                       </div>
                     </div>
                   </div>
-                  {blogs.map(
-                    (blog:BlogsProps) => (
-                      <Link to={`/blogss/${blog.id}`}
-                        key={blog.id}
-                        className="flex flex-col items-center justify-start w-full px-6 pb-4 gap-4 bg-white-A700 shadow-xs rounded"
-                      >
-                        <div className="flex flex-row justify-center w-full">
-                          <div className="flex flex-col items-start justify-start w-full">
-                            <div className="flex flex-row justify-start">
-                              <Img
-                                // src={blog.img}
-                                alt="bitmap_one"
-                                className="w-full rounded-tr rounded-tl object-cover"
-                              />
-                            </div>
+                  {blogs.map((blog: BlogsProps) => (
+                    <Link
+                      to={`/blogss/${blog.id}`}
+                      key={blog.id}
+                      className="flex flex-col items-center justify-start w-full px-6 pb-4 gap-4 bg-white-A700 shadow-xs rounded"
+                    >
+                      <div className="flex flex-row justify-center w-full">
+                        <div className="flex flex-col items-start justify-start w-full">
+                          <div className="flex flex-row justify-start">
                             <Img
-                              // src={blog.perImg}
-                              alt="ovalcopyfour"
-                              className="h-[42px] w-[42px] mt-[-22px] ml-[26px] rounded-[50%]"
+                              // src={blog.img}
+                              alt="bitmap_one"
+                              className="w-full rounded-tr rounded-tl object-cover"
                             />
                           </div>
+                          <Img
+                            // src={blog.perImg}
+                            alt="ovalcopyfour"
+                            className="h-[42px] w-[42px] mt-[-22px] ml-[26px] rounded-[50%]"
+                          />
                         </div>
-                        <div className="flex flex-col items-center justify-start w-[81%] gap-2">
-                          <Heading as="h2" className="w-[96%]">
-                            {blog.title}
-                            <br />
-                          </Heading>
-                          <Text as="p">{blog.content.slice(0, 50)}</Text>
-                          <div className="h-px w-full bg-blue_gray-100_4c" />
-                        </div>
-                        <div className="flex flex-row justify-between items-center w-full">
-                          <Text
-                            size="xs"
-                            as="p"
-                            className="!text-blue_gray-900"
-                          >
-                            15 March, 2022
-                          </Text>
-                          <Button className="min-w-[66px]">UX / UI</Button>
-                        </div>
-                      </Link>
-                    )
-                  )}
+                      </div>
+                      <div className="flex flex-col items-center justify-start w-[81%] gap-2">
+                        <Heading as="h2" className="w-[96%]">
+                          {blog.title}
+                          <br />
+                        </Heading>
+                        <Text as="p">{blog.content.slice(0, 50)}</Text>
+                        <div className="h-px w-full bg-blue_gray-100_4c" />
+                      </div>
+                      <div className="flex flex-row justify-between items-center w-full">
+                        <Text size="xs" as="p" className="!text-blue_gray-900">
+                          15 March, 2022
+                        </Text>
+                        <Button className="min-w-[66px]">UX / UI</Button>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>

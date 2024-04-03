@@ -37,6 +37,7 @@ export default function Register() {
 
   return (
     <>
+      
       <div className="flex flex-col items-center justify-start w-full gap-[105px] bg-white-A700">
         <header className="flex flex-row justify-between items-center w-full p-6 bg-white-A700">
           <div className="flex flex-row justify-between items-center w-[55%] ml-[139px]">

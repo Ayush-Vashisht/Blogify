@@ -14,24 +14,25 @@ export const blogRouter = new Hono<{
   };
 }>();
 
-// blogRouter.use("/*", async (c, next) => {
-//   const authHeader = c.req.header("authorization") || "";
-//   try {
-//     const user = await verify(authHeader, c.env.JWT_SECRET);
-//     if (user) {
-//       c.set("userId", user.id);
-//       await next();
-//     } else {
-//       c.status(401);
-//       return c.json({
-//         message: "You are not logged in",
-//       });
-//     }
-//   } catch (error) {
-//     c.status(403);
-//     return c.text("You are not logged in");
-//   }
-// });
+blogRouter.use("/*", async (c, next) => {
+  const authHeader = c.req.header("Authorization") || "";
+  console.log(authHeader)
+  try {
+    const user = await verify(authHeader, c.env.JWT_SECRET);
+    if (user) {
+      c.set("userId", user.id);
+      await next();
+    } else {
+      c.status(401);
+      return c.json({
+        message: "You are not logged in",
+      });
+    }
+  } catch (error) {
+    c.status(403);
+    return c.text("You are not logged in");
+  }
+});
 
 blogRouter.post("/", async (c) => {
   const body = await c.req.json();
@@ -43,8 +44,8 @@ blogRouter.post("/", async (c) => {
     });
   }
 
-  // const authorId = c.get("userId");
-  const authorId = "d1e7e5cf-3dea-45c2-9da0-3d768bfc92a2";
+  const authorId = c.get("userId");
+  // const authorId = "d1e7e5cf-3dea-45c2-9da0-3d768bfc92a2";
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());

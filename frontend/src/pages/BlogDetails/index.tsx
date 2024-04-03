@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text, Heading, Img, Button } from "../../components";
 import Footer from "../../components/Footer";
-import { signupInput } from "@ayush-vashisht/common";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -20,15 +19,23 @@ export default function BlogDetailsPage() {
   const { id } = useParams();
   useEffect(() => {
     const getBlog = async () => {
-      const response = await axios.get(`/api/v1/blog/${id}`);
+      console.log(localStorage.getItem("token"))
+      const response = await axios.get(`/api/v1/blog/${id}`,{
+        headers: {
+          Authorization: localStorage.getItem("token")
+      }
+      });
       setBlog(response.data.blog);
       setLoading(false);
-      console.log(blog);
-      const { title, content, author } = blog;
-      console.log({ title, content, author });
     };
     getBlog();
   }, [id]);
+  useEffect(() => {
+    if (blog) {
+      const { title, content, author } = blog;
+      console.log({ title, content, author });
+    }
+  }, [blog]);
   return (
     <>
       {loading ? (
@@ -39,7 +46,7 @@ export default function BlogDetailsPage() {
             <div className="flex flex-row justify-between items-center w-[55%] ml-[139px]">
               <Link to="/">
                 <Img
-                  src="images/img_group_150.svg"
+                  src="/images/img_group_150.svg"
                   alt="image"
                   className="h-[24px]"
                 />
@@ -106,7 +113,7 @@ export default function BlogDetailsPage() {
                 </div>
               ) : (
                 <Img
-                  src="images/img_search.svg"
+                  src="/images/img_search.svg"
                   alt="search_one"
                   onClick={() => setOpen(!open)}
                   className="h-[30px] w-[30px] "
@@ -154,8 +161,7 @@ export default function BlogDetailsPage() {
                 <div className="flex flex-row justify-center w-full">
                   <div className="flex flex-col items-center justify-start w-full">
                     <Img
-                      src="images/img_rectangle_20.png"
-                      // src="{blog.img}"
+                      src={`/images/img_rectangle_20.png`} // Adjust the image URL here
                       alt="image_one"
                       className="w-full object-cover rounded-[25px]"
                     />
@@ -172,11 +178,12 @@ export default function BlogDetailsPage() {
                       <div className="flex flex-row justify-between items-center w-[97%] mt-12 ml-4">
                         <div className="flex flex-row justify-start items-center w-[31%] gap-3.5">
                           <Img
-                            src="images/img_ellipse_5.png"
+                            src={`/images/img_ellipse_5.png`}
                             // src={author.img}
                             alt="circleimage"
                             className="h-[70px] w-[70px] rounded-[50%]"
                           />
+
                           <div className="flex flex-col items-start justify-start w-[72%] gap-0.5">
                             <Heading
                               size="lg"
@@ -198,7 +205,7 @@ export default function BlogDetailsPage() {
                           shape="round"
                           leftIcon={
                             <Img
-                              src="images/img_share_1_1.svg"
+                              src={`/images/img_share_1_1.svg`}
                               alt="share (1) 1"
                             />
                           }
@@ -373,7 +380,7 @@ export default function BlogDetailsPage() {
               <div className="flex flex-row w-full gap-[27px]">
                 <div className="h-[273px] w-[32%] relative">
                   <Img
-                    src="images/img_rectangle_25.png"
+                    src={`/images/img_rectangle_25.png`}
                     alt="image"
                     className="justify-center h-[273px] w-full left-0 bottom-0 right-0 top-0 m-auto object-cover absolute rounded-[5px]"
                   />
@@ -392,7 +399,7 @@ export default function BlogDetailsPage() {
                 </div>
                 <div className="h-[273px] w-[32%] relative">
                   <Img
-                    src="images/img_rectangle_26.png"
+                    src={`/images/img_rectangle_26.png`}
                     alt="image"
                     className="justify-center h-[273px] w-full left-0 bottom-0 right-0 top-0 m-auto object-cover absolute rounded-[5px]"
                   />
@@ -411,7 +418,7 @@ export default function BlogDetailsPage() {
                 </div>
                 <div className="h-[273px] w-[32%] relative">
                   <Img
-                    src="images/img_rectangle_26_273x433.png"
+                    src={`/images/img_rectangle_26_273x433.png`}
                     alt="image"
                     className="justify-center h-[273px] w-full left-0 bottom-0 right-0 top-0 m-auto object-cover absolute rounded-[5px]"
                   />

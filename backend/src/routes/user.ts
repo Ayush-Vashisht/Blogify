@@ -91,15 +91,7 @@ userRouter.post("/signin", async (c) => {
 
 userRouter.get("/profile", async (c) => {
   const authHeader = c.req.header("authorization") || "";
-  // console.log(localStorage.getItem("token"))
   console.log(authHeader);
-//   function getTokenFromLocalStorage(): string | null {
-//     return localStorage.getItem("token");
-// }
-// const token = getTokenFromLocalStorage();
-// console.log(token)
-
-// console.log(getTokenFromLocalStorage());
   try {
     const user = await verify(authHeader, c.env.JWT_SECRET);
     const prisma = new PrismaClient({

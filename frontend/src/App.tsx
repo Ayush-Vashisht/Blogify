@@ -8,11 +8,11 @@ axios.defaults.baseURL = "http://127.0.0.1:8787/";
 axios.defaults.withCredentials = true;
 function App() {
   return (
-    <Router>
-      <UserContextProvider>
+    <UserContextProvider>
+      <Router>
         <Routes />
-      </UserContextProvider>
-    </Router>
+      </Router>
+    </UserContextProvider>
   );
 }
 
