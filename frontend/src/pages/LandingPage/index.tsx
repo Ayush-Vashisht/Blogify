@@ -26,7 +26,7 @@ export default function LandingPagePage() {
                     as="h1"
                     className="!font-merriweather text-center"
                   >
-                    Share via writing and podcasts, hope you enjoy
+                    Share via writing, <br/> hope you enjoy
                   </Heading>
 
                   <Text
@@ -44,7 +44,7 @@ export default function LandingPagePage() {
                   className="h-[61px] w-[61px] mt-[205px]"
                 />
               </div>
-              <div className="flex flex-row justify-start w-[51%] mt-[-4px] gap-[25px]">
+              <div className="flex flex-row justify-center w-[51%] mt-[-4px] gap-[25px]">
                 <Link to="/blogs">
                   <Button
                     color="indigo_900_01"
@@ -54,14 +54,14 @@ export default function LandingPagePage() {
                     Read Blogs
                   </Button>
                 </Link>
-                <Button
+                {/* <Button
                   color="indigo_200"
                   size="4xl"
                   variant="outline"
                   className="tracking-[0.12px] min-w-[271px] rounded-[35px] hover:bg-indigo-900 hover:text-white-A700 hover:ring-2 "
                 >
                   Listen to Podcasts
-                </Button>
+                </Button> */}
               </div>
             </div>
           </div>
@@ -69,7 +69,7 @@ export default function LandingPagePage() {
             <div className="flex flex-row justify-start items-start w-full gap-[29px]">
               <BlogPostsSevenPage />
             </div>
-            <div className="flex flex-col items-center justify-start w-full gap-[17px]">
+            {/* <div className="flex flex-col items-center justify-start w-full gap-[17px]">
               <div className="flex flex-row justify-between items-center w-full">
                 <div className="flex flex-row justify-start items-center w-[39%] gap-[18px]">
                   <Button color="gray_300" size="7xl" className="w-[76px]">
@@ -196,7 +196,7 @@ export default function LandingPagePage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <footer className="flex flex-col items-center justify-center w-full">

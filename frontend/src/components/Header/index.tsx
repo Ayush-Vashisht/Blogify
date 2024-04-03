@@ -2,18 +2,28 @@ import { Heading } from "components/Heading";
 import { Img } from "components/Img";
 import { UserContext } from "contexts/UserContext";
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-  const {user}=useContext(UserContext);
+  const { user } = useContext(UserContext);
+
+  const { pathname } = useLocation();
+  const page = pathname.split("/")?.[1];
+  function linkClasses(type = null) {
+    let classes = "tracking-[0.12px] text-center ";
+    if (type === page) {
+      classes += "!text-indigo-900_01";
+    } else classes += "!text-indigo-200_01";
+    return classes;
+  }
   return (
     <div className="flex flex-col items-center justify-start w-full gap-[95px] bg-white-A700">
       <header className="flex flex-row justify-between items-center w-full p-6 bg-white-A700">
         <div className="flex flex-row justify-between items-center w-[55%] ml-[139px]">
           <Link to="/">
             <Img
-              src="images/img_group_150.svg"
+              src="/images/img_group_150.svg"
               alt="image"
               className="h-[24px]"
             />
@@ -23,36 +33,47 @@ const Header = () => {
               <Link to="/">
                 <Heading
                   as="h6"
-                  className="!text-indigo-900_01 tracking-[0.12px] text-center"
+                  className={linkClasses("")}
                 >
                   Home
                 </Heading>
               </Link>
-              <div className="h-px w-full bg-indigo-900_01" />
+              {page == "" ? (
+                <div className="h-px w-full bg-indigo-900_01" />
+              ) : (
+                <></>
+              )}
             </div>
-            <Link to="/podcast">
+            {/* <Link to="/podcast">
               <Heading
                 as="h6"
                 className="!text-indigo-200_01 tracking-[0.12px] text-center"
               >
                 Podcast
               </Heading>
-            </Link>
+            </Link> */}
             <Link to="/blogs">
-              <Heading
-                as="h6"
-                className="!text-indigo-200_01 tracking-[0.12px] text-center"
-              >
+              <Heading as="h6" className={linkClasses("blogs")}>
                 Blog
               </Heading>
+              {page === "blogs" ? (
+                <div className="h-px w-full bg-indigo-900_01" />
+              ) : (
+                <></>
+              )}
             </Link>
             <Link to="/contactus">
               <Heading
                 as="h6"
-                className="!text-indigo-200_01 tracking-[0.12px] text-center"
+                className={linkClasses("contactus")}
               >
                 Contact
               </Heading>
+              {page === "contactus" ? (
+                <div className="h-px w-full bg-indigo-900_01" />
+              ) : (
+                <></>
+              )}
             </Link>
           </div>
         </div>
@@ -78,7 +99,7 @@ const Header = () => {
             </div>
           ) : (
             <Img
-              src="images/img_search.svg"
+              src="/images/img_search.svg"
               alt="search_one"
               onClick={() => setOpen(!open)}
               className="h-[30px] w-[30px] "
@@ -102,7 +123,7 @@ const Header = () => {
             </svg>
           </Link>
 
-          <Link to={user?"/":"/login"}>
+          <Link to={user ? "/" : "/login"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
